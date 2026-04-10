@@ -1,0 +1,208 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────
+// NOTE: Prisma enums are not supported by SQLite.
+// Valid values are enforced at the application layer (zod schemas in services).
+// Role     : ADMIN | TEACHER | STUDENT
+// TranscriptSource: ZOOM | MANUAL | UPLOAD
+// ProcessingStatus: PENDING | PROCESSING | DONE | FAILED
+// ─────────────────────────────────────────────
+
+
+// ─────────────────────────────────────────────
+// IDENTITY DOMAIN
+// ─────────────────────────────────────────────
+
+model User {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  password  String    // bcrypt hash — never store plaintext
+  role      String    @default("STUDENT") // Role: ADMIN | TEACHER | STUDENT
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // soft delete — filter WHERE deletedAt IS NULL
+
+  // Relations
+  enrollments     Enrollment[]
+  teachingCourses Course[]      @relation("CourseTeacher")
+  submissions     Submission[]
+  refreshTokens   RefreshToken[]
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+// ─────────────────────────────────────────────
+// ACADEMIC DOMAIN
+// ─────────────────────────────────────────────
+
+model Course {
+  id          String    @id @default(cuid())
+  title       String
+  description String?
+  teacherId   String
+  teacher     User      @relation("CourseTeacher", fields: [teacherId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  // Relations
+  enrollments Enrollment[]
+  lectures    Lecture[]
+}
+
+// Enrollment is the bridge between User and Course.
+// This is what was missing. It also carries progress state.
+model Enrollment {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  courseId   String
+  course     Course   @relation(fields: [courseId], references: [id])
+  enrolledAt DateTime @default(now())
+  active     Boolean  @default(true)
+
+  @@unique([userId, courseId]) // a student can only enroll once per course
+}
+
+// Lecture replaces CurriculumNode.
+// It has ONE job: represent a single class session.
+// All media is in separate models below.
+model Lecture {
+  id              String    @id @default(cuid())
+  courseId        String
+  course          Course    @relation(fields: [courseId], references: [id])
+  title           String
+  description     String?
+  moduleNumber    Int?      // logical grouping for Week/Module view
+  orderIndex      Int       // display order within a course
+  isLocked        Boolean   @default(false)
+  durationMinutes Int?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime?
+
+  // Relations — each is its own model with its own lifecycle
+  files       LectureFile[]
+  transcripts Transcript[]
+  assignments Assignment[]
+  aiSummaries AISummary[]
+}
+
+// All media for a lecture lives here.
+// One lecture can have multiple files of different types.
+model LectureFile {
+  id        String   @id @default(cuid())
+  lectureId String
+  lecture   Lecture  @relation(fields: [lectureId], references: [id])
+  type      String   // "SLIDES" | "RECORDING" | "REFERENCE" | "OTHER"
+  label     String?  // human-readable name
+  url       String   // path or cloud URL — storage-agnostic
+  mimeType  String?
+  sizeBytes Int?
+  createdAt DateTime @default(now())
+}
+
+// ─────────────────────────────────────────────
+// TRANSCRIPT DOMAIN
+// The raw transcript is sacred. Never mutate it.
+// Derived artifacts (summaries, embeddings) point to it.
+// ─────────────────────────────────────────────
+
+model Transcript {
+  id               String           @id @default(cuid())
+  lectureId        String
+  lecture          Lecture          @relation(fields: [lectureId], references: [id])
+  source           String           @default("ZOOM")    // TranscriptSource: ZOOM | MANUAL | UPLOAD
+  rawContent       String           // original — immutable after creation
+  processedContent String?          // cleaned version for AI processing
+  status           String           @default("PENDING") // ProcessingStatus: PENDING | PROCESSING | DONE | FAILED
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  // Relations
+  aiSummaries AISummary[]
+  aiJobs      AIJob[]
+}
+
+// ─────────────────────────────────────────────
+// AI DOMAIN
+// AISummary is a first-class entity — versioned and traceable.
+// ─────────────────────────────────────────────
+
+model AISummary {
+  id            String      @id @default(cuid())
+  lectureId     String
+  lecture       Lecture     @relation(fields: [lectureId], references: [id])
+  transcriptId  String?
+  transcript    Transcript? @relation(fields: [transcriptId], references: [id])
+  type          String      // "BRIEF" | "FULL" | "BULLET_POINTS" — extensible
+  content       String
+  modelUsed     String      // e.g. "gpt-4o", "claude-3-5-sonnet" — for auditability
+  promptVersion String?     // track which prompt template generated this
+  createdAt     DateTime    @default(now())
+}
+
+// AIJob tracks async processing state.
+// Never run AI calls synchronously in a request handler.
+model AIJob {
+  id           String           @id @default(cuid())
+  transcriptId String
+  transcript   Transcript       @relation(fields: [transcriptId], references: [id])
+  jobType      String           // "SUMMARIZE" | "EMBED" | "QUIZ_GENERATE"
+  status       String           @default("PENDING") // ProcessingStatus: PENDING | PROCESSING | DONE | FAILED
+  errorMessage String?          // populated on FAILED status
+  startedAt    DateTime?
+  completedAt  DateTime?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+// ─────────────────────────────────────────────
+// ASSESSMENT DOMAIN
+// ─────────────────────────────────────────────
+
+model Assignment {
+  id          String    @id @default(cuid())
+  lectureId   String
+  lecture     Lecture   @relation(fields: [lectureId], references: [id])
+  title       String
+  description String?
+  fileUrl     String?   // PDF task sheet
+  dueAt       DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  submissions Submission[]
+}
+
+model Submission {
+  id           String     @id @default(cuid())
+  assignmentId String
+  assignment   Assignment @relation(fields: [assignmentId], references: [id])
+  studentId    String
+  student      User       @relation(fields: [studentId], references: [id])
+  fileUrl      String?
+  textContent  String?
+  grade        Float?
+  feedback     String?
+  submittedAt  DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([assignmentId, studentId]) // one submission per student per assignment
+}

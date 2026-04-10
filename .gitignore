@@ -1,0 +1,5 @@
+node_modules/
+.next/
+dist/
+backend/prisma/dev.db
+.env
