@@ -61,7 +61,30 @@ export const coursesRoutes: FastifyPluginAsync = async (server: FastifyInstance)
 
     const course = await prisma.course.findUnique({
       where: { id, deletedAt: null },
-      include: { lectures: { where: { deletedAt: null }, orderBy: { orderIndex: 'asc' } } }
+      include: {
+        lectures: {
+          where: { deletedAt: null },
+          orderBy: [
+            { moduleNumber: 'asc' },
+            { orderIndex: 'asc' },
+          ],
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            moduleNumber: true,
+            orderIndex: true,
+            contentType: true,
+            scheduledAt: true,
+            teacherNote: true,
+            isLocked: true,
+            durationMinutes: true,
+            createdAt: true,
+            updatedAt: true,
+            courseId: true,
+          },
+        },
+      },
     });
 
     if (!course) return reply.status(404).send({ error: 'Course not found' });

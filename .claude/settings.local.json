@@ -12,7 +12,8 @@
       "Bash(find frontend/src -name \"*.tsx\" -type f ! -path \"*/node_modules/*\" ! -path \"*/.next/*\" -exec grep -l \"graph\\\\|Graph\" {} \\\\;)",
       "Bash(npx prisma:*)",
       "Bash(npm run:*)",
-      "Bash(echo \"PID: $!\")"
+      "Bash(echo \"PID: $!\")",
+      "Bash(python3 -m json.tool)"
     ]
   }
 }
