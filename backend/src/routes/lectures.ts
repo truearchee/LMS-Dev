@@ -19,7 +19,7 @@ export function makeLectureRoutes(storage: StorageService) {
         include: {
           files:       { orderBy: { createdAt: 'asc' } },
           transcripts: { select: { id: true, source: true, status: true, createdAt: true } },
-          aiSummaries: { orderBy: { createdAt:  'desc' }, take: 3 },
+          aiSummaries: { orderBy: { createdAt: 'desc' }, take: 3 },
         },
       });
 
@@ -38,8 +38,38 @@ export function makeLectureRoutes(storage: StorageService) {
       return reply.send({ lecture });
     });
 
+    // ── POST /api/v1/lectures/:id/files/register ──────────────────────────────
+    // JSON body — TEACHER registers an already-uploaded file URL.
+    // Must be registered BEFORE /:id/files to avoid Fastify route conflict.
+    fastify.post(
+      '/:id/files/register',
+      { preHandler: [requireAuth, requireRole('TEACHER', 'ADMIN')] },
+      async (request, reply) => {
+        const { id } = request.params as { id: string };
+        const { type, label, url, mimeType, sizeBytes } = request.body as {
+          type: string;
+          label?: string;
+          url: string;
+          mimeType?: string;
+          sizeBytes?: number;
+        };
+
+        if (!url)  return reply.status(400).send({ error: 'url is required.' });
+        if (!type) return reply.status(400).send({ error: 'type is required.' });
+
+        const lecture = await prisma.lecture.findUnique({ where: { id, deletedAt: null } });
+        if (!lecture) return reply.status(404).send({ error: 'Lecture not found.' });
+
+        const file = await prisma.lectureFile.create({
+          data: { lectureId: id, url, type, label, mimeType, sizeBytes },
+        });
+
+        return reply.status(201).send({ file });
+      },
+    );
+
     // ── POST /api/v1/lectures/:id/files ───────────────────────────────────────
-    // Access: TEACHER only
+    // Multipart upload — TEACHER uploads a binary file directly
     fastify.post(
       '/:id/files',
       { preHandler: [requireAuth, requireRole('TEACHER', 'ADMIN')] },

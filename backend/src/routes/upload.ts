@@ -2,6 +2,7 @@ import { FastifyInstance } from 'fastify';
 import { pipeline } from 'stream/promises';
 import { Writable } from 'stream';
 import { StorageService } from '../services/storage/StorageService.js';
+import { requireAuth, requireRole } from '../middleware/auth.js';
 
 // The route receives the StorageService via dependency injection.
 // It has no knowledge of which backend (local, S3, R2) is active.
@@ -9,7 +10,7 @@ export async function uploadRoutes(
   fastify: FastifyInstance,
   opts: { storage: StorageService },
 ) {
-  fastify.post('/', async (request, reply) => {
+  fastify.post('/', { preHandler: [requireAuth, requireRole('TEACHER', 'ADMIN')] }, async (request, reply) => {
     const data = await request.file();
 
     if (!data) {

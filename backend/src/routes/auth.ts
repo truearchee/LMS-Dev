@@ -2,6 +2,7 @@ import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 import bcrypt from 'bcryptjs';
 import { prisma } from '../lib/prisma.js';
 import { env } from '../lib/env.js';
+import { requireAuth } from '../middleware/auth.js';
 
 const BCRYPT_ROUNDS = 12;
 
@@ -113,6 +114,17 @@ export async function authRoutes(fastify: FastifyInstance) {
     const newRefreshToken = await issueRefreshToken(fastify, user.id);
 
     return reply.send({ accessToken, refreshToken: newRefreshToken });
+  });
+
+  // GET /api/v1/auth/me
+  fastify.get('/me', { preHandler: [requireAuth] }, async (request: FastifyRequest, reply: FastifyReply) => {
+    const { userId } = request.user;
+    const user = await prisma.user.findUnique({
+      where: { id: userId, deletedAt: null },
+      select: { id: true, name: true, email: true, role: true },
+    });
+    if (!user) return reply.status(401).send({ error: 'user not found' });
+    return reply.send(user);
   });
 
   // POST /api/v1/auth/logout

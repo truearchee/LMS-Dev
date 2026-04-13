@@ -92,6 +92,9 @@ model Lecture {
   orderIndex      Int       // display order within a course
   isLocked        Boolean   @default(false)
   durationMinutes Int?
+  contentType     String    @default("LECTURE")  // LECTURE | LAB | QUIZ
+  scheduledAt     DateTime?                       // when this lecture is scheduled
+  teacherNote     String?                         // professor's note/comment about this lecture
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   deletedAt       DateTime?

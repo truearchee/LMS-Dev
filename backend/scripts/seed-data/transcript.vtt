@@ -1,0 +1,2422 @@
+WEBVTT
+
+1
+00:00:35.850 --> 00:00:37.530
+Sofwah Ahmad: Good morning, Arthur.
+
+2
+00:00:42.500 --> 00:00:44.079
+Sofwah Ahmad: You're muted, I think.
+
+3
+00:00:46.490 --> 00:00:47.550
+arthur.leontev: Do you hear me?
+
+4
+00:00:47.920 --> 00:00:49.260
+Sofwah Ahmad: Yes, very well.
+
+5
+00:00:49.260 --> 00:00:54.509
+arthur.leontev: Yes, but… No, I don't hear you, I don't know why.
+
+6
+00:00:55.030 --> 00:00:56.129
+Sofwah Ahmad: You don't hear me?
+
+7
+00:00:56.400 --> 00:00:57.840
+arthur.leontev: Oh, not here. Yeah, okay.
+
+8
+00:00:57.840 --> 00:00:59.769
+Sofwah Ahmad: Oh, okay, okay.
+
+9
+00:00:59.770 --> 00:01:03.439
+arthur.leontev: Hold on, I want to also set a cool background.
+
+10
+00:01:03.440 --> 00:01:10.499
+Sofwah Ahmad: Your background is very, very cool also. Also, your orientation, Arthur.
+
+11
+00:01:10.950 --> 00:01:11.730
+arthur.leontev: Yeah.
+
+12
+00:01:13.340 --> 00:01:13.890
+Sofwah Ahmad: I see.
+
+13
+00:01:16.360 --> 00:01:21.810
+arthur.leontev: Okay, but what's the agenda? So, what's the plan? We're gonna run new topics?
+
+14
+00:01:21.990 --> 00:01:30.780
+Sofwah Ahmad: Yeah, yeah. Even if we have the exam, we will, we will go to, we will go to, to, to new topic, today.
+
+15
+00:01:31.110 --> 00:01:31.720
+Sofwah Ahmad: Right?
+
+16
+00:01:32.860 --> 00:01:33.390
+Sofwah Ahmad: So…
+
+17
+00:01:33.390 --> 00:01:37.280
+arthur.leontev: As I understood, we're done with, linear algebra, and we go.
+
+18
+00:01:37.280 --> 00:01:41.430
+Sofwah Ahmad: Yeah, now we can celebrate, yes? A little celebration, no?
+
+19
+00:01:42.090 --> 00:01:46.290
+arthur.leontev: No, no, no, I mean, so today we're gonna run, Caribus, or what?
+
+20
+00:01:46.290 --> 00:01:59.159
+Sofwah Ahmad: Yeah, today is where we're going to talk about… we're going to talk about car class, and it is mostly things that you've already seen during the bridge class, right? But some of your friends here, they are not from the bridge class, so I'm going to repeat.
+
+21
+00:01:59.400 --> 00:02:05.629
+Sofwah Ahmad: I think we can wait for a few more minutes. I hope that people get the email.
+
+22
+00:02:06.670 --> 00:02:07.400
+arthur.leontev: Yeah.
+
+23
+00:02:08.740 --> 00:02:09.750
+Sofwah Ahmad: Yeah.
+
+24
+00:02:10.820 --> 00:02:13.519
+Sofwah Ahmad: Right. Good morning, good morning.
+
+25
+00:02:13.860 --> 00:02:16.060
+Sofwah Ahmad: How's things in the… in the door?
+
+26
+00:02:16.790 --> 00:02:17.910
+arthur.leontev: No, it's fine.
+
+27
+00:02:18.590 --> 00:02:19.370
+Sofwah Ahmad: Okay.
+
+28
+00:02:19.610 --> 00:02:20.930
+Sofwah Ahmad: Okay, okay.
+
+29
+00:02:20.930 --> 00:02:21.839
+arthur.leontev: Nice, nice.
+
+30
+00:02:23.220 --> 00:02:24.300
+Sofwah Ahmad: Bye.
+
+31
+00:02:25.890 --> 00:02:26.970
+Sofwah Ahmad: Right.
+
+32
+00:02:27.270 --> 00:02:30.959
+Sofwah Ahmad: I believe that's Omar. Muhammad Hamdan, okay.
+
+33
+00:02:30.960 --> 00:02:32.210
+Омар Ибрагим: Morning, Professor.
+
+34
+00:02:32.530 --> 00:02:33.450
+Sofwah Ahmad: Morning.
+
+35
+00:02:33.640 --> 00:02:44.329
+Sofwah Ahmad: Good morning. So guys, as per, Provost's instructions, that, we need to have it, we need to have the camera on policy.
+
+36
+00:02:49.550 --> 00:02:50.020
+Омар Ибрагим: Hmm.
+
+37
+00:02:50.020 --> 00:02:57.690
+Sofwah Ahmad: Yeah, the meeting will be recorded, and it will be posted on Moodle also, right?
+
+38
+00:02:57.960 --> 00:03:05.990
+Sofwah Ahmad: But then, if you guys still having problems with the camera settings, please, see to IT today.
+
+39
+00:03:06.400 --> 00:03:14.749
+Sofwah Ahmad: Right? I've seen people from Sections 1 having problem with, with, with, with the Cabre, it just doesn't work.
+
+40
+00:03:15.050 --> 00:03:17.300
+Sofwah Ahmad: One of the Zoom meetings, I don't know why.
+
+41
+00:03:18.360 --> 00:03:25.420
+Sofwah Ahmad: So… I hope that everyone is okay, and stay safe and quiet, right?
+
+42
+00:03:26.020 --> 00:03:45.749
+Sofwah Ahmad: and sound. Well, maybe not so quiet, but in any case, right, in any case, the midterm, is postponed. Arthur is exploring. Nice, Arthur. Right, so the, the, the meeting is, the midterm is postponed. If you ask me when, the honest answer is, I don't know.
+
+43
+00:03:45.830 --> 00:04:03.959
+Sofwah Ahmad: Right? I really don't know. If it's going to be online or not. Also, I don't know, right? Because the instruction that we got from the provost's office is only that all midterm this week is to be canceled until further notice, right? So I will, ask for more details, but as soon as I have one.
+
+44
+00:04:04.030 --> 00:04:10.229
+Sofwah Ahmad: just, just be prepared, right? So, I would suggest you to just practice on the exercises sheet.
+
+45
+00:04:10.340 --> 00:04:12.340
+Sofwah Ahmad: That we have.
+
+46
+00:04:12.400 --> 00:04:31.110
+Sofwah Ahmad: If you still want, the extra office hours on, on, on Monday and Tuesday, I can also, I can also give. We can also go through it together through, through, through MS Teams. But for the moment, there will be no midterm this Wednesday. We will have labs, though, right? And the idea that I have for labs is
+
+47
+00:04:31.260 --> 00:04:53.229
+Sofwah Ahmad: I will share the exercises sheet from before. I'm sorry that I didn't share it, last night or today, because the Moodle didn't work last night, right? And it just worked, this morning recently, so as soon as I finish with this one, I will upload the exercises sheet. I will ask you, here are the questions that we will go through during the labs, so you can try it on your own at least a day before.
+
+48
+00:04:53.270 --> 00:05:05.749
+Sofwah Ahmad: And then, for an extra point, as usual, you can, just scan it, you know, I mean, like, take a picture of what you have, and then you can… and then you can, upload it, and then we discuss together, yes?
+
+49
+00:05:06.920 --> 00:05:09.029
+Sofwah Ahmad: So, so far, question?
+
+50
+00:05:09.890 --> 00:05:11.449
+Sofwah Ahmad: You're muted, Arthur.
+
+51
+00:05:12.330 --> 00:05:17.920
+arthur.leontev: Yeah, okay. Now I figure it out. So, after this picture, you will drop a new exercise sheets, right?
+
+52
+00:05:18.200 --> 00:05:23.959
+Sofwah Ahmad: Yeah, yeah, the exercises sheet on functions and limits, the topic that we will discuss about today.
+
+53
+00:05:25.160 --> 00:05:27.390
+arthur.leontev: And for example.
+
+54
+00:05:28.240 --> 00:05:43.240
+arthur.leontev: Okay, you cannot say when we will have the quiz related to these topics, which we will cover during this lecture. So, you also cannot say us when we will have a quiz related to all these calculus new topics, right?
+
+55
+00:05:43.240 --> 00:05:53.520
+Sofwah Ahmad: the… if it's following the syllabus on Moodle, right, the quiz on the calculus part, on function limits and derivative, it should be exactly the first Monday after
+
+56
+00:05:53.750 --> 00:06:09.669
+Sofwah Ahmad: After, 8, right? But also, I don't know what is the procedure of having exams on this one, right? As soon as I have some info, at least for the now, it's for the midterm first, right? Because it is after the 8 break is the quiz, yes?
+
+57
+00:06:09.760 --> 00:06:29.170
+Sofwah Ahmad: So, for the maintenance, I need to know, what's actually the procedure, and how… how are we going to go about it? Is it going to be online or not? Even the class, is it going to be online? The online class will be prolonged or not, we don't know, right? What we know is that until Wednesday, we will have online classes. After that, we wait until further notice.
+
+58
+00:06:29.400 --> 00:06:30.160
+Sofwah Ahmad: Yes?
+
+59
+00:06:30.490 --> 00:06:45.029
+Sofwah Ahmad: Maybe, maybe there will be a case that we will have exams on Friday afternoon, I don't know, maybe. Or maybe we will just postpone it to the next Wednesday, I also don't know. But as soon as I know, I have more details, then I will let you know.
+
+60
+00:06:45.470 --> 00:06:48.110
+arthur.leontev: But we have a break in 2 weeks, as I understood, yeah.
+
+61
+00:06:49.340 --> 00:06:56.939
+Sofwah Ahmad: Yeah, almost every two weeks. Yeah, next week we are on derivative, and then the other week we are… we are… we are on…
+
+62
+00:06:58.330 --> 00:07:08.620
+Sofwah Ahmad: Alright, so, so guys, right, again, the policy is, is camera on, so Aktor, Maha, Yaira, Zayn, Absalama, and Ali, could you please turn your camera on?
+
+63
+00:07:09.440 --> 00:07:12.860
+Sofwah Ahmad: Good morning. You see, it's nice to see you that you are well and safe.
+
+64
+00:07:12.860 --> 00:07:14.270
+Aktore Myrzakassym: Hello, Ms. Sofa, how are you?
+
+65
+00:07:14.620 --> 00:07:16.310
+Sofwah Ahmad: Good! How are you, Aktar?
+
+66
+00:07:16.790 --> 00:07:17.270
+Aktore Myrzakassym: Good, good.
+
+67
+00:07:17.270 --> 00:07:31.230
+Sofwah Ahmad: Allow me to share Windows, and I… I will try to move from my laptop to… to iPad, right? And it might be crappy a little bit, because I am using, here, Adobe…
+
+68
+00:07:31.650 --> 00:07:39.299
+Sofwah Ahmad: Player, the best things for, okay, one moment. I need to go to the QuickTime player. Excellent, right?
+
+69
+00:07:39.950 --> 00:07:41.989
+Sofwah Ahmad: Oh, hello, hello. Nice.
+
+70
+00:07:43.300 --> 00:07:46.070
+Sofwah Ahmad: Right, so, today…
+
+71
+00:07:46.170 --> 00:08:02.919
+Sofwah Ahmad: We celebrate, right? Because we're talking about functions and limits. Most of the things here are some things that you already see from the… from the bridge class, yes, from the bridge class. If you are comfortable already with the notions, then take it as a refreshment.
+
+72
+00:08:02.920 --> 00:08:15.100
+Sofwah Ahmad: But take also this opportunity if you were not too comfortable, right? Now, it's time for you to… to… to… how do I say? Dig deeper into the sun and then set the base.
+
+73
+00:08:15.600 --> 00:08:19.359
+Sofwah Ahmad: Yes? So today we talk about functions and limits.
+
+74
+00:08:19.480 --> 00:08:30.699
+Sofwah Ahmad: Okay, this one we are supposed to be in the third one, yes? Not in the second one. But here we go, right? Functions. You can see my… my screen clearly, yes?
+
+75
+00:08:31.190 --> 00:08:37.030
+Sofwah Ahmad: And I see the list of students here. Do you see it also? Or no? Is it obstructing your view?
+
+76
+00:08:37.809 --> 00:08:39.389
+arthur.leontev: Yes, yes, we see it's cool.
+
+77
+00:08:39.830 --> 00:08:43.009
+Sofwah Ahmad: So you see Maha, Yara, Zainab names?
+
+78
+00:08:44.010 --> 00:08:45.559
+yara.alkendi: Yes, we can see it.
+
+79
+00:08:45.890 --> 00:08:55.219
+Sofwah Ahmad: Okay, okay, so then maybe I will just, like, put it here. I like your names, because it reminds me that I should involve you in the class, right?
+
+80
+00:08:55.830 --> 00:08:57.090
+Sofwah Ahmad: Right, Dolly?
+
+81
+00:09:00.130 --> 00:09:01.450
+Sofwah Ahmad: Ali, you're there?
+
+82
+00:09:06.490 --> 00:09:12.519
+Sofwah Ahmad: Usually, if it's not Ramadan, I will say that Ali is taking coffee. But now it's Ramadan, Ali cannot take coffee.
+
+83
+00:09:13.790 --> 00:09:15.349
+Sofwah Ahmad: Salam, are you there?
+
+84
+00:09:21.530 --> 00:09:22.730
+Salama Aldhaheri: Yes, Professor?
+
+85
+00:09:23.120 --> 00:09:25.170
+Sofwah Ahmad: Alright, Zane appeared there.
+
+86
+00:09:26.430 --> 00:09:27.790
+Zainab Alhosani: Yes, Professor.
+
+87
+00:09:28.400 --> 00:09:29.020
+Sofwah Ahmad: Good.
+
+88
+00:09:29.810 --> 00:09:32.370
+Sofwah Ahmad: What? Arthur, don't play with it!
+
+89
+00:09:35.050 --> 00:09:37.610
+Sofwah Ahmad: I… how do I limit… okay.
+
+90
+00:09:38.740 --> 00:09:41.849
+Sofwah Ahmad: How do I close these things? Okay.
+
+91
+00:09:42.150 --> 00:09:45.730
+Sofwah Ahmad: Now, guys, functions, right? Functions.
+
+92
+00:09:46.030 --> 00:10:00.820
+Sofwah Ahmad: Yes? So what is a function? You know what a function is. It's just a rule, right? That assigns each element in X, each element X in a set A to exactly one element F of X in a set B, right? I'm sure that you've seen… whoopsie.
+
+93
+00:10:00.960 --> 00:10:15.970
+Sofwah Ahmad: I'm sure that you've seen this one before, right? So you have all your elements of X in one set, right? And then with F, you map it to the other side. For example, if you have F of X is equal to X squared, and here you will have minus 1, minus 2,
+
+94
+00:10:15.970 --> 00:10:23.589
+Sofwah Ahmad: 2, 5, then here it will be minus 1 squared, right? Here you will have minus 2 squared, then you will have 2 squared.
+
+95
+00:10:23.590 --> 00:10:37.269
+Sofwah Ahmad: Something like this, yes? And also, this one is something that we call domain, right? And this one, the white one, the white set, we call codomain, right? In the codomain, we have a subset of it. This one is what we call range.
+
+96
+00:10:37.500 --> 00:10:51.699
+Sofwah Ahmad: Yes? And we will have something in the codomain that is not arranged. For example, when you have f of x is equal to x squared, whatever result it is, it will be greater than or equal to 0. So whenever you have minus 100, it will be out here.
+
+97
+00:10:52.000 --> 00:10:52.770
+Sofwah Ahmad: Yes?
+
+98
+00:10:53.560 --> 00:11:01.309
+Sofwah Ahmad: So far, good. Now, what is the natural domain? Natural domain is just the largest set on which the formula for F is defined.
+
+99
+00:11:01.460 --> 00:11:09.609
+Sofwah Ahmad: Yes? So, for example, in this case, the natural domain is R, right? And then the range of F is, all the non-negative real number.
+
+100
+00:11:09.960 --> 00:11:15.330
+Sofwah Ahmad: So far, it is cool, right? It is really, really easy. Omer, where are you going?
+
+101
+00:11:17.240 --> 00:11:18.220
+Sofwah Ahmad: No.
+
+102
+00:11:18.400 --> 00:11:31.489
+Sofwah Ahmad: some illustrations that we have, right? This one, you have seen it before. Now, this one, it's very, very important to know where is X, and then where is F of X. Now, X is something that is in the domain, right? Hello.
+
+103
+00:11:31.840 --> 00:11:34.070
+Sofwah Ahmad: Here. X is something here.
+
+104
+00:11:34.090 --> 00:11:43.050
+Sofwah Ahmad: Yes? This is the domain part. Here is the range part, right? So every point here is just all the points X, comma, F of X, right?
+
+105
+00:11:43.050 --> 00:11:56.310
+Sofwah Ahmad: So, whenever we talk about the limit later on, when x goes to 2, we see that when x goes to 2, let's say here, right? Around 2, which part of the function? Here, f of x, right? It means that
+
+106
+00:11:56.310 --> 00:12:02.740
+Sofwah Ahmad: When we take a look at some X here, which part of the function correspond to, our domain?
+
+107
+00:12:02.830 --> 00:12:03.680
+Sofwah Ahmad: Right?
+
+108
+00:12:04.180 --> 00:12:17.230
+Sofwah Ahmad: Okay? So now, to detect what is the domain, we look for something that will make our function. Function is just like a machine, right? You have an input, and then you have an output. You look for which input that will
+
+109
+00:12:17.870 --> 00:12:36.679
+Sofwah Ahmad: Screw your function, right? So, if you have division by zero, then the function is no longer well-defined. If you have the square root of minus 2, let's say that, you have this one, roots of even number, and inside you have a negative, right? It's not good, right? So then you want to exclude that from your domain, or if you have the log
+
+110
+00:12:36.680 --> 00:12:43.699
+Sofwah Ahmad: of, something that will make this guy non-positive. Also, you want to exclude that from your domain.
+
+111
+00:12:43.810 --> 00:12:50.600
+Sofwah Ahmad: Why? Later on again, when we talk about the limit, then you need to start be suspicious whenever you see
+
+112
+00:12:50.600 --> 00:13:14.099
+Sofwah Ahmad: this part, yes? And also, when you are programming things, guys, right? You make your program in Python. You start creating your functions, right? And that function works the same as the functions here, right? Whenever you know that, hey, let's say that you're throwing a bunch of input, you start… you want to start, de-classifying those, those, those values.
+
+113
+00:13:14.100 --> 00:13:21.790
+Sofwah Ahmad: In which it will, it will mess up the function. So, let's say that whenever you create a program that you want to
+
+114
+00:13:22.100 --> 00:13:27.540
+Sofwah Ahmad: plot 2X minus 2. For example, you say that, hey, if X
+
+115
+00:13:27.720 --> 00:13:40.029
+Sofwah Ahmad: sorry, is equal to 2, then maybe you want to do something about it. Abort, or get out from the functions, or, you know, don't write the output, etc, etc, right?
+
+116
+00:13:40.270 --> 00:13:42.729
+Sofwah Ahmad: So then, so then, yeah.
+
+117
+00:13:43.670 --> 00:14:06.560
+Sofwah Ahmad: Right, so to find the domain, right, you will not be asked about this in the exam, obviously, but you need to be able to identify, right, which part of the function that is not in the domain. Why? Later on, when you talk about the limit, right, you might want to be suspicious on analyzing further in those parts that create the division by zero.
+
+118
+00:14:06.560 --> 00:14:12.599
+Sofwah Ahmad: For example, for this part, right? X plus 3X squared plus 3X minus that. What do we do?
+
+119
+00:14:12.600 --> 00:14:24.480
+Sofwah Ahmad: Well, the domain is that all the real numbers such that this one is defined, but this one will be not defined when this one is going… is close… is equal to zero.
+
+120
+00:14:24.480 --> 00:14:33.640
+Sofwah Ahmad: Right? So what we need to do is that we just need to find all values that, that is the zeros of the polynomial, and then we exclude them.
+
+121
+00:14:34.760 --> 00:14:43.030
+Sofwah Ahmad: Yes, then we exclude them. In this case, since the zeros of the polynomial is X equals to minus 5 and X equals to 2, then we exclude them.
+
+122
+00:14:44.270 --> 00:14:45.740
+Sofwah Ahmad: Maha, is it okay?
+
+123
+00:14:48.290 --> 00:14:48.860
+maha.abdulla: Yes.
+
+124
+00:14:50.010 --> 00:14:51.450
+Sofwah Ahmad: Omer, is it okay?
+
+125
+00:14:53.180 --> 00:14:54.390
+Омар Ибрагим: Yes, Professor.
+
+126
+00:14:55.180 --> 00:15:01.240
+Sofwah Ahmad: Good So now, who else? Sana is here also. Good morning, Sana.
+
+127
+00:15:01.870 --> 00:15:03.640
+Sana Alali: Good morning, Chris. Okay.
+
+128
+00:15:04.100 --> 00:15:15.989
+Sofwah Ahmad: So now, for the Part B, right? Same game. We want it to be defined. How do we… how do we check? Well, we just need this one to be… to be greater than or equal to zero. Oopsie, here, yes?
+
+129
+00:15:16.260 --> 00:15:27.160
+Sofwah Ahmad: Right? So, here we want the inside part to be greater than or equal to 0. Then, by doing some little bit of arithmetic, then we see that X is less than or equal to 5 over 3.
+
+130
+00:15:27.770 --> 00:15:29.210
+Sofwah Ahmad: Ali, are you there?
+
+131
+00:15:31.370 --> 00:15:32.440
+ali.yaarobi: Yes, mister.
+
+132
+00:15:33.020 --> 00:15:34.299
+Sofwah Ahmad: You got this one?
+
+133
+00:15:35.680 --> 00:15:36.779
+Sofwah Ahmad: This part is okay?
+
+134
+00:15:36.780 --> 00:15:38.249
+ali.yaarobi: Kind of. Can you repeat?
+
+135
+00:15:38.250 --> 00:15:58.240
+Sofwah Ahmad: Okay. This one, Ali. We want to find what is the domain of 5 minus 3x, Ali, yes? Now, we just need to check what is the requirement to be in the square root. To be in the square root, we need the inside part of the square root, right? To be positive, right? Equal to 0 also possible.
+
+136
+00:15:58.410 --> 00:15:59.180
+Sofwah Ahmad: Yes?
+
+137
+00:15:59.510 --> 00:16:00.859
+Sofwah Ahmad: So then we have…
+
+138
+00:16:00.980 --> 00:16:12.359
+Sofwah Ahmad: it is 5 minus 3X, it is greater than 0, or from here, we move the 3X to the other side, so we will have 5 is greater than 3X, yes? And then we start dividing by 3.
+
+139
+00:16:12.490 --> 00:16:17.129
+Sofwah Ahmad: Yes? Here we will have, X is less than here, yes?
+
+140
+00:16:17.460 --> 00:16:22.660
+Sofwah Ahmad: Yes? You see it, Ali? So we will have X is less than or equal to 5 over 3.
+
+141
+00:16:25.100 --> 00:16:25.860
+Sofwah Ahmad: Yes?
+
+142
+00:16:26.540 --> 00:16:27.560
+ali.yaarobi: Oh, gosh.
+
+143
+00:16:28.070 --> 00:16:28.800
+Sofwah Ahmad: Okay.
+
+144
+00:16:29.160 --> 00:16:47.049
+Sofwah Ahmad: Right? And then for the C part, same game, right? What is… in this case, we need to watch out when the denominator is equal 0, and this part, it needs to be greater than 0. But look, this one is always greater than 0. Why? X squared is positive, plus 4 is positive, so there is no problem.
+
+145
+00:16:47.050 --> 00:16:54.499
+Sofwah Ahmad: There is no point that, that will make this one zero. So, again, the domain of the rational is just…
+
+146
+00:16:54.550 --> 00:17:04.219
+Sofwah Ahmad: Following that part, right? And also the last part in this case, that we need to take into account both parts, right? In this case, this one needs to be greater than zero.
+
+147
+00:17:04.660 --> 00:17:16.870
+Sofwah Ahmad: We do the same as before, then X is going to be greater than half, and in this case, we cannot have X to be equal to minus 4 or 4, yes? So then we have X needs to be greater than half.
+
+148
+00:17:17.030 --> 00:17:27.680
+Sofwah Ahmad: Right? And then we need to exclude, plus and minus 4. This one, actually. Well, minus 4 is already not there, so we need to just exclude X equals to 4.
+
+149
+00:17:27.859 --> 00:17:28.690
+Sofwah Ahmad: Okay?
+
+150
+00:17:29.180 --> 00:17:35.770
+Sofwah Ahmad: Cool. Now, there are some functions, yes? There are some functions that we need to… that we need to know.
+
+151
+00:17:35.900 --> 00:17:49.920
+Sofwah Ahmad: This is going to be our dear friend, right? The piecewise function, right? What is the piecewise function? Remember that it is just a function, right? In the first region, it will have… this is the region, this is on the domain, right?
+
+152
+00:17:50.560 --> 00:18:01.380
+Sofwah Ahmad: Right? This is on the domain, right? Values of X, yes? And then this one is also. For example, if I have, like, when X is greater than 0,
+
+153
+00:18:01.900 --> 00:18:03.099
+Sofwah Ahmad: I will have…
+
+154
+00:18:03.180 --> 00:18:15.449
+Sofwah Ahmad: let's say h of X is equal to X squared when X is greater than 0, right? But then it will be X when x is less than 0. So how will it look like?
+
+155
+00:18:15.450 --> 00:18:26.509
+Sofwah Ahmad: When X is greater than 0, it is X squared, you see? This is X squared, yes? And then when X is less than 0, it's just something like this, yes? So this is a piecewise function.
+
+156
+00:18:26.560 --> 00:18:38.090
+Sofwah Ahmad: Why do we study it? It's very, very important in AI also, right? For example, suppose that you have a weather, right? Your input
+
+157
+00:18:40.020 --> 00:18:43.830
+Sofwah Ahmad: Your input is your parameters, for example.
+
+158
+00:18:44.360 --> 00:18:46.450
+Sofwah Ahmad: Yes? And then your output?
+
+159
+00:18:47.490 --> 00:18:54.350
+Sofwah Ahmad: It could be, the degree Celsius, right? It could be, precipitation, and so on and so forth.
+
+160
+00:18:54.480 --> 00:18:55.380
+Sofwah Ahmad: Right?
+
+161
+00:18:55.500 --> 00:19:01.430
+Sofwah Ahmad: And then your output is, let's say that you want to decide whether it rains, or not.
+
+162
+00:19:02.410 --> 00:19:07.610
+Sofwah Ahmad: Or neurin, right? The idea is that you will have your,
+
+163
+00:19:07.730 --> 00:19:15.690
+Sofwah Ahmad: whatever your parameter as your input, here is your X, right? And then you will have a function, yes? And then you will have
+
+164
+00:19:16.750 --> 00:19:25.819
+Sofwah Ahmad: And then you will have, one moment… and then… no, this is only one, right? And then you will have, this is rain.
+
+165
+00:19:25.930 --> 00:19:27.539
+Sofwah Ahmad: Right? Or no rain.
+
+166
+00:19:28.020 --> 00:19:28.760
+Sofwah Ahmad: Right?
+
+167
+00:19:29.340 --> 00:19:40.600
+Sofwah Ahmad: Here, we can… we can just categorize it as H , right? Whenever X is on certain criteria, then you will have rain, and in another criteria, you will have no rain.
+
+168
+00:19:40.710 --> 00:19:45.820
+Sofwah Ahmad: And it will be easier for you, this is for each value of X in,
+
+169
+00:19:45.820 --> 00:20:01.750
+Sofwah Ahmad: whatever range, right? And sometimes it will be easier for you to have it like this, right? 1, 0. If it rains, we give it 1, and then if it no rain, it's giving it zero, right? And these functions that we pass in by… that we pass by, it's called the activation function.
+
+170
+00:20:01.750 --> 00:20:04.749
+Sofwah Ahmad: Now, allow me to show you a little bit on the…
+
+171
+00:20:04.820 --> 00:20:23.649
+Sofwah Ahmad: Here, this one, right? So, you have your input X, right? And then you start giving it, to, to your network, right? Then you will have your output, yes? Consider only the single layer with only two output here, yes? Then, then the activation function here, mostly it is a piecewise one.
+
+172
+00:20:23.810 --> 00:20:27.209
+Sofwah Ahmad: I think, like, I downloaded it somewhere.
+
+173
+00:20:27.660 --> 00:20:30.870
+Sofwah Ahmad: Wait one moment… Nope.
+
+174
+00:20:31.410 --> 00:20:36.920
+Sofwah Ahmad: I think, give me one moment… Hello, Sophan. What? No!
+
+175
+00:20:38.910 --> 00:20:39.850
+Sofwah Ahmad: Okay.
+
+176
+00:20:43.130 --> 00:20:46.290
+Sofwah Ahmad: I cannot… oh, I need to click OK here, yes.
+
+177
+00:20:46.360 --> 00:20:47.250
+Sofwah Ahmad: No.
+
+178
+00:20:47.320 --> 00:20:58.210
+Sofwah Ahmad: This one, right? This is the type of the activation function. So then, when you have really exactly yes or no, then usually what you have, the activation function, is 0 and 1 here.
+
+179
+00:20:58.210 --> 00:21:09.480
+Sofwah Ahmad: But sometimes, as the activation function, you want to have something that might have a different value. For example, you don't have only rain and no rain, but you have, let's say, rain or,
+
+180
+00:21:09.530 --> 00:21:23.759
+Sofwah Ahmad: You have the four seasons, right? Then you will have… you want to have more options as you go, yes? And here are the… the difference of the activation function, and later on you will see that you might need something that is…
+
+181
+00:21:23.760 --> 00:21:32.169
+Sofwah Ahmad: quite smooth, right? But you see the ReLU here, right? And then the binaries tab here, you see that it is in the form of the activation function.
+
+182
+00:21:32.730 --> 00:21:36.620
+Sofwah Ahmad: So, going back, where is my QuickTime player? Here.
+
+183
+00:21:36.730 --> 00:21:41.209
+Sofwah Ahmad: Yes? So going back… no, I'm going to… okay, not moving here, yes?
+
+184
+00:21:41.530 --> 00:21:49.699
+Sofwah Ahmad: So now, here, yes, given the following function, for example, right? Evaluate a piecewise function.
+
+185
+00:21:49.860 --> 00:21:51.490
+Sofwah Ahmad: Now, Salama.
+
+186
+00:21:52.190 --> 00:21:53.600
+Sofwah Ahmad: Right? Salamah.
+
+187
+00:21:53.820 --> 00:22:06.650
+Sofwah Ahmad: Please tell me, if I want to evaluate G of the minus 4, which part of the function should I, should I choose? Is it the first one, the top one, the middle one, or the bottom one?
+
+188
+00:22:15.890 --> 00:22:17.420
+Salama Aldhaheri: One second, Professor.
+
+189
+00:22:17.860 --> 00:22:18.480
+Sofwah Ahmad: Please.
+
+190
+00:22:20.340 --> 00:22:22.370
+Sofwah Ahmad: By the way, who is FMZ?
+
+191
+00:22:27.140 --> 00:22:30.010
+fmz: Fatna. Azura.
+
+192
+00:22:30.300 --> 00:22:35.570
+Sofwah Ahmad: Thought Muhammad Fatmo Ahmad, okay, okay. Yeah. I don't for yourself, yeah?
+
+193
+00:22:36.240 --> 00:22:44.610
+fmz: Yeah, okay, because it just worked. And I think Nora and Fatma are now joining, because they had the same problem. The link was just loading on the screen, it wasn't,
+
+194
+00:22:44.760 --> 00:22:46.679
+fmz: Like, getting them into the meeting.
+
+195
+00:22:46.790 --> 00:22:48.679
+fmz: I sent them the code just now.
+
+196
+00:22:49.240 --> 00:22:50.610
+Sofwah Ahmad: Okay, okay, okay
+
+197
+00:22:50.940 --> 00:22:58.010
+Sofwah Ahmad: Right, so if I want to substitute, t equals to minus 4, to which part of the function should I do it?
+
+198
+00:22:59.020 --> 00:23:00.010
+Sofwah Ahmad: Shalomah.
+
+199
+00:23:00.200 --> 00:23:01.470
+Salama Aldhaheri: The first one, Professor.
+
+200
+00:23:01.470 --> 00:23:02.740
+Sofwah Ahmad: The first one, why?
+
+201
+00:23:04.150 --> 00:23:08.710
+Salama Aldhaheri: Because, minus 4 is equal to the T.
+
+202
+00:23:09.120 --> 00:23:14.049
+Sofwah Ahmad: Exactly, exactly, good, right? So, you see here, right, this is for your input.
+
+203
+00:23:14.200 --> 00:23:16.330
+Sofwah Ahmad: Yes? It is for your input.
+
+204
+00:23:16.440 --> 00:23:17.549
+Sofwah Ahmad: Now, Ali.
+
+205
+00:23:17.830 --> 00:23:24.199
+Sofwah Ahmad: Yes, Ali? If I want to calculate G , right, which part of the function should I choose?
+
+206
+00:23:29.060 --> 00:23:30.939
+Sofwah Ahmad: Ali, what is G of 1?
+
+207
+00:23:33.170 --> 00:23:34.570
+ali.yaarobi: The second ones.
+
+208
+00:23:34.980 --> 00:23:47.609
+Sofwah Ahmad: The second one, right? So G of 1, this one is equal to 10. Easy peasy, yes? Easy peasy, right? The rest, it's just, you can see. You can see, how do you, how do you evaluate it, right?
+
+209
+00:23:47.640 --> 00:23:52.600
+Sofwah Ahmad: This one is very, very easy. Now the composition. Again, yes?
+
+210
+00:23:52.600 --> 00:24:10.970
+Sofwah Ahmad: Suppose that you see that function is just a machine, right? You have your machine, you have your input, right, and then you have your output. If that output, you use it again for another machine, right, and then you have the second output, yes? And in this case, right, it is called the composition, right?
+
+211
+00:24:10.970 --> 00:24:30.650
+Sofwah Ahmad: Here, you have G of F of X. Why? Because X first, it is input to DF, right? And then it is input to G, yes? And you know it by heart now. You know how linear transformation works, right? Only in the case of linear transformation, it is a multiplication. Not here.
+
+212
+00:24:30.750 --> 00:24:35.640
+Sofwah Ahmad: And going back to our, to our neural network a little bit… hello.
+
+213
+00:24:36.190 --> 00:24:37.339
+Sofwah Ahmad: So if I'll go.
+
+214
+00:24:37.470 --> 00:24:51.820
+Sofwah Ahmad: Here, yes? Going back to our neural network a little bit, you see, right, if you only have one layer, only one and zero, you have only two, for example, here, right? One layer with two nodes here. Then, you will have, what?
+
+215
+00:24:52.220 --> 00:25:11.940
+Sofwah Ahmad: Then you will have your input, right? Your H1, and then this is your output. H1 of X1, H1 of X2, and etc. If you want to have another layer also, H2 or H3, and so on, right? And then this Y is what? This Y is just H3 composition, H2 composition, H1 of X.
+
+216
+00:25:12.700 --> 00:25:19.769
+Sofwah Ahmad: Yes? So neural network is nothing but, a bunch of, a bunch of composition.
+
+217
+00:25:19.900 --> 00:25:37.039
+Sofwah Ahmad: Yes, a bunch of composition. We will talk about it later. By the way, you may take it as part of your final project also, alright? I will send also, by the end of this week, a guidance for a final project, and please submit the names of your group.
+
+218
+00:25:37.780 --> 00:25:39.939
+Sofwah Ahmad: So allow me to go back here, yes?
+
+219
+00:25:40.660 --> 00:25:57.070
+Sofwah Ahmad: So the composition function is just, yes, it's just, it's just the series of applying the previous functions to this one, right? And composition is not commutative, and the domain of G of F, you need to be careful, right? So.
+
+220
+00:25:57.070 --> 00:26:02.190
+Sofwah Ahmad: You see that G of F of X, right? You input X to it.
+
+221
+00:26:02.190 --> 00:26:11.049
+Sofwah Ahmad: to F. So X needs to be in the domain of F, right? And then you will go this one, right? This is G of F of X, yes?
+
+222
+00:26:11.230 --> 00:26:20.129
+Sofwah Ahmad: X is in the domain of F, right? But also, F of X, whatever here, needs to be in the domain of G, yes? In the domain of G.
+
+223
+00:26:20.280 --> 00:26:36.370
+Sofwah Ahmad: Okay? So now, a little illustration that G of F is not equal to F of G is that whenever you have f of x is equal to x plus 3, g of x is equal to square root of X, calculate F of G , and then G of F.
+
+224
+00:26:37.440 --> 00:26:40.449
+Sofwah Ahmad: Arthur, could you help me? What is F of G?
+
+225
+00:26:43.170 --> 00:26:44.180
+Sofwah Ahmad: of X?
+
+226
+00:26:45.730 --> 00:26:47.400
+Sofwah Ahmad: So, rather than X.
+
+227
+00:26:47.400 --> 00:26:52.439
+arthur.leontev: So after GeoPax, it should be… Hold on.
+
+228
+00:26:53.080 --> 00:26:57.150
+arthur.leontev: It should be… Do you?
+
+229
+00:26:58.460 --> 00:27:02.100
+arthur.leontev: Square F… I mean, G, X, F, X.
+
+230
+00:27:02.900 --> 00:27:06.229
+Sofwah Ahmad: Yeah, but I want to calculate this one first, Arthur. Yes?
+
+231
+00:27:06.230 --> 00:27:08.279
+arthur.leontev: So we go from right to the left.
+
+232
+00:27:08.910 --> 00:27:11.069
+Sofwah Ahmad: Yeah, so what will it be?
+
+233
+00:27:11.660 --> 00:27:13.980
+arthur.leontev: So it would be G of X.
+
+234
+00:27:14.520 --> 00:27:16.170
+Sofwah Ahmad: Yeah, what is G of X?
+
+235
+00:27:16.990 --> 00:27:21.970
+arthur.leontev: GFX, it's, X plus, 3.
+
+236
+00:27:22.270 --> 00:27:24.310
+Sofwah Ahmad: G of X. What is G of X?
+
+237
+00:27:26.620 --> 00:27:27.379
+Sofwah Ahmad: This is Gene.
+
+238
+00:27:27.380 --> 00:27:28.300
+arthur.leontev: How about you?
+
+239
+00:27:29.380 --> 00:27:30.559
+Sofwah Ahmad: This is genius.
+
+240
+00:27:30.890 --> 00:27:33.089
+arthur.leontev: Oh, my bad, yes, square effects.
+
+241
+00:27:33.380 --> 00:27:35.969
+Sofwah Ahmad: So we have F of…
+
+242
+00:27:36.360 --> 00:27:39.279
+Sofwah Ahmad: square root of X, and what will it give us?
+
+243
+00:27:43.670 --> 00:27:50.140
+arthur.leontev: Let you give us… Oh, I don't know, Square FX? Nothing changed.
+
+244
+00:27:50.320 --> 00:27:53.700
+Sofwah Ahmad: instead of… look, this one, right? When you have the input X,
+
+245
+00:27:54.100 --> 00:28:04.909
+Sofwah Ahmad: you have input X here. If this one is A, then you will have A here. But since that one is, since that one is the square root of X now, yes, this is your input now.
+
+246
+00:28:05.080 --> 00:28:06.380
+Sofwah Ahmad: One moment, yeah?
+
+247
+00:28:06.380 --> 00:28:06.880
+arthur.leontev: Feel free.
+
+248
+00:28:07.230 --> 00:28:08.770
+arthur.leontev: matter of facts, past three, right?
+
+249
+00:28:09.190 --> 00:28:16.869
+Sofwah Ahmad: Yeah, sorry, yeah, yes, sorry, what? Yes, right? It will be a square plus 3.
+
+250
+00:28:16.870 --> 00:28:17.300
+arthur.leontev: Yeah.
+
+251
+00:28:17.300 --> 00:28:17.850
+Sofwah Ahmad: Yep.
+
+252
+00:28:18.320 --> 00:28:21.100
+Sofwah Ahmad: What about G of X? G of F, no.
+
+253
+00:28:22.200 --> 00:28:23.460
+arthur.leontev: GeoFX.
+
+254
+00:28:24.210 --> 00:28:25.800
+arthur.leontev: It's UB…
+
+255
+00:28:26.190 --> 00:28:27.040
+Sofwah Ahmad: G?
+
+256
+00:28:28.090 --> 00:28:28.880
+Sofwah Ahmad: Off one.
+
+257
+00:28:28.880 --> 00:28:30.650
+arthur.leontev: Z… G…
+
+258
+00:28:32.340 --> 00:28:38.370
+Sofwah Ahmad: Let me write it for you. G of F, yes? This is G of… what's inside? What is F of X?
+
+259
+00:28:39.440 --> 00:28:41.110
+arthur.leontev: FX, X plus 2.
+
+260
+00:28:41.400 --> 00:28:42.430
+Sofwah Ahmad: Explosive.
+
+261
+00:28:43.190 --> 00:28:45.120
+Sofwah Ahmad: Right? So what will it be?
+
+262
+00:28:46.670 --> 00:28:52.630
+arthur.leontev: It's really weird… Okay, so… TFX.
+
+263
+00:28:57.180 --> 00:29:02.640
+Sofwah Ahmad: It will be just this, yes? Whatever input, right? G of X, yes?
+
+264
+00:29:03.120 --> 00:29:05.010
+Sofwah Ahmad: You just change it to explicit.
+
+265
+00:29:06.030 --> 00:29:06.900
+Sofwah Ahmad: Good?
+
+266
+00:29:08.130 --> 00:29:08.740
+arthur.leontev: this.
+
+267
+00:29:09.470 --> 00:29:10.150
+Sofwah Ahmad: Sure.
+
+268
+00:29:11.260 --> 00:29:16.469
+arthur.leontev: Well, yeah, I just need the time to process, but I remember we did it in the first semester.
+
+269
+00:29:16.470 --> 00:29:20.990
+Sofwah Ahmad: Yes. Yeah. Which you need to be very, very comfortable of now, Arthur.
+
+270
+00:29:23.060 --> 00:29:25.580
+Sofwah Ahmad: Alright, any questions on this part?
+
+271
+00:29:27.210 --> 00:29:28.569
+Sofwah Ahmad: Ali, is it okay?
+
+272
+00:29:32.810 --> 00:29:33.889
+ali.yaarobi: Yes, Mrs.
+
+273
+00:29:34.570 --> 00:29:35.220
+Sofwah Ahmad: Okay.
+
+274
+00:29:36.240 --> 00:29:39.030
+Sofwah Ahmad: So, right? This one, yes? This is what we got.
+
+275
+00:29:39.180 --> 00:29:42.149
+Sofwah Ahmad: Before, and we see that it's not equal to.
+
+276
+00:29:42.330 --> 00:29:47.859
+Sofwah Ahmad: Now, what about this one? This one is the same, yes? This one is the same. f of g of 12,
+
+277
+00:29:47.980 --> 00:29:49.240
+Sofwah Ahmad: For…
+
+278
+00:29:49.590 --> 00:29:55.889
+Sofwah Ahmad: You need to compute this one first, right? F of G. What is G of 12? Well, you can compute this one, right?
+
+279
+00:29:56.150 --> 00:30:07.930
+Sofwah Ahmad: G of 12 is just, square root of 3 times 12, square root of 36, yes? This is equal to 6. Alright? This is Y, this is G of 12.
+
+280
+00:30:08.190 --> 00:30:13.420
+Sofwah Ahmad: Excellent. Then, afterwards, you just substitute 6, to this one.
+
+281
+00:30:13.810 --> 00:30:14.630
+Sofwah Ahmad: Right?
+
+282
+00:30:14.860 --> 00:30:33.180
+Sofwah Ahmad: Now, find F of G and its domain. Well, it's easy, right? F of G, you have it this one, right? And the domain? You need to be careful, right? In this case, that we need to have it, X, right, needs to be in the domain of G, right? And then F of…
+
+283
+00:30:33.330 --> 00:30:40.320
+Sofwah Ahmad: X needs to be in the… sorry, G of X needs to be in the domain of F, yes?
+
+284
+00:30:40.600 --> 00:30:42.899
+Sofwah Ahmad: Right? And then you, you get this one.
+
+285
+00:30:44.540 --> 00:30:56.260
+Sofwah Ahmad: Right? So, no limit, right? And no limit. The idea of limit, guys, whenever, from this moment, I don't want anyone to panic whenever they see limit, right? Limit is nothing but…
+
+286
+00:30:56.390 --> 00:30:57.640
+Sofwah Ahmad: Substitution.
+
+287
+00:30:57.840 --> 00:30:59.569
+Sofwah Ahmad: When you can, yes?
+
+288
+00:30:59.860 --> 00:31:02.300
+Sofwah Ahmad: If you have a function, right?
+
+289
+00:31:02.480 --> 00:31:09.740
+Sofwah Ahmad: If you have a function, let's say that x squared plus 9, now I ask you, what is F of 3?
+
+290
+00:31:10.010 --> 00:31:14.590
+Sofwah Ahmad: Then you will have 3 squared plus 9. What is F of 100?
+
+291
+00:31:14.590 --> 00:31:30.850
+Sofwah Ahmad: then you will have 100 squared plus 9. What if I ask you F of C for any serial number? You have C squared plus 9, right? You just substitute when you can. But the problem is, suppose that I have F of X is equal to X squared minus 4 divided by X plus 2.
+
+292
+00:31:30.860 --> 00:31:35.560
+Sofwah Ahmad: Right? Or, let's say that divided by, X minus 2.
+
+293
+00:31:36.470 --> 00:31:38.500
+Sofwah Ahmad: Right? Then what can you do?
+
+294
+00:31:38.660 --> 00:31:46.079
+Sofwah Ahmad: What can you do? Here, you know that at X is equal to 2, the function of F is undefined.
+
+295
+00:31:47.880 --> 00:32:02.359
+Sofwah Ahmad: Right? The function of F is undefined. Now, can we do something about it? Right? Can we still guess at around 2 what will be the value? And you guys saw this before, right? You guys saw this before, that, the following function
+
+296
+00:32:02.980 --> 00:32:16.419
+Sofwah Ahmad: Right? It is undefined when x goes to 2, and F of 2 doesn't exist, right? But can we still have some information around x equals to 2, right? So, we try to compute some value, right? So, when we have
+
+297
+00:32:16.580 --> 00:32:17.609
+Sofwah Ahmad: to him.
+
+298
+00:32:17.720 --> 00:32:33.120
+Sofwah Ahmad: Right? This is 2, right? When X is less than 2, right? As it goes approaching 2 from the left, right? And then we see, oh, then the value is getting closer and closer to 4. When we start approaching from the right, also the same thing, right?
+
+299
+00:32:33.120 --> 00:32:42.160
+Sofwah Ahmad: then it's going to closer and closer to 4. It's slightly greater than 4, but it's getting closer and closer to 4. In fact, when we see the…
+
+300
+00:32:42.230 --> 00:32:53.100
+Sofwah Ahmad: When we see the graph, that when X is going to 2, so this is 2, our point of interest, right? Then, as this one going here, then the value is going towards,
+
+301
+00:32:53.200 --> 00:32:54.460
+Sofwah Ahmad: tool, yes?
+
+302
+00:32:54.630 --> 00:32:57.570
+Sofwah Ahmad: Here, it's going towards true, right?
+
+303
+00:32:58.600 --> 00:33:15.590
+Sofwah Ahmad: Right? So, in this case, from the first table, we see that, limit X goes to 2 minus, this is from the left of 2, right? We call it from 2 minus, yes? It is equal to 4, and then from the right also, then it is, it is equal to 4.
+
+304
+00:33:15.610 --> 00:33:30.960
+Sofwah Ahmad: Right? This is what we call the one-sided limits, right? This is limit X goes to 2 minus F of X. We say that it is approaching 2 from the left, right? X going to 2 plus, it's going to from the right.
+
+305
+00:33:30.960 --> 00:33:39.920
+Sofwah Ahmad: Right? Since we have from the left and from the right, it's giving us the same… the same value, then we see that the limit X goes to 2F of X is equal to 4.
+
+306
+00:33:40.570 --> 00:33:41.350
+Sofwah Ahmad: Yes?
+
+307
+00:33:41.350 --> 00:34:01.429
+Sofwah Ahmad: We say that the limit exists. We can also determine this limit algebraically, right? Algebraically, what we do? If we just substitute directly, pay attention, I want everyone to pay attention to this one, right? If you substitute everything directly here, what will you have? You will have 2 squared minus 4 divided by 2 minus 2. What you will have is 0 over 0.
+
+308
+00:34:01.430 --> 00:34:03.140
+Sofwah Ahmad: Right? Then…
+
+309
+00:34:03.250 --> 00:34:11.819
+Sofwah Ahmad: It's, it's, it's… it's weird. We don't have… we cannot have something division by zero, especially when you have 0 over 0, it's super weird.
+
+310
+00:34:11.830 --> 00:34:30.720
+Sofwah Ahmad: Right? So what we need to do is that we need to work more on the function itself, right? How do we work more? We need to factorize. I expect at this moment, everyone needs to know that whenever you encounter something weird, that you need to factorize, and then you can start, then you can start canceling out. Yes?
+
+311
+00:34:31.280 --> 00:34:38.489
+Sofwah Ahmad: You can cancel out, then you have X plus 2 only. Then you substitute. At this moment, when you substitute again, there is no problem.
+
+312
+00:34:38.610 --> 00:34:40.830
+Sofwah Ahmad: There you go, you have equals to 4.
+
+313
+00:34:41.409 --> 00:34:42.389
+Sofwah Ahmad: No.
+
+314
+00:34:43.260 --> 00:34:57.730
+Sofwah Ahmad: I do remember that last semester, Muhammad told me that, professor, in the exam, suppose that I do not know how to calculate this, can we just substitute using the previous one here? Right? Just substituting value? No, you cannot.
+
+315
+00:34:58.040 --> 00:35:04.899
+Sofwah Ahmad: Right? No, you cannot. Why? I will show you. This is something that I didn't put in the slides, but it is in our book.
+
+316
+00:35:05.040 --> 00:35:13.490
+Sofwah Ahmad: Right? But here is the thing, right? You see that Y is equal to cosine, cosine 1 over X.
+
+317
+00:35:14.550 --> 00:35:21.590
+Sofwah Ahmad: Or wait. Allow me to see… wait, that one over X is okay, good, too.
+
+318
+00:35:21.880 --> 00:35:26.700
+Sofwah Ahmad: But I want to give you something that is, that is kind of better.
+
+319
+00:35:27.160 --> 00:35:28.549
+Sofwah Ahmad: Give me a moment.
+
+320
+00:35:35.910 --> 00:35:37.340
+Sofwah Ahmad: One second…
+
+321
+00:35:39.470 --> 00:35:44.859
+Sofwah Ahmad: No, let us, let us use, let us use the, let us use the, the, the following one.
+
+322
+00:35:45.510 --> 00:35:58.310
+Sofwah Ahmad: Ryan, let us use the following one. Look, yes? Here is the thing, right? Suppose that I have Y is equal to cosine 1 over X, yes? 1 over X. The value is like this, right? As it goes to 0,
+
+323
+00:35:58.310 --> 00:36:09.810
+Sofwah Ahmad: It will keep shaking, profusely, right? The limit when it goes to zero, it doesn't exist. But what happens if I chose a value, X, that is close to here, right?
+
+324
+00:36:09.850 --> 00:36:14.799
+Sofwah Ahmad: Every choice of value that I have, it will show that the limit will go to zero.
+
+325
+00:36:14.890 --> 00:36:32.299
+Sofwah Ahmad: Yes? The limit will go to 0. Well, actually, if only I choose a value here, for example, then it will be up there. If I choose some value here, then it will be up there, you know? Then it will go to 1. Or if I choose some value that corresponds to the graph that goes to minus 1, it goes to the minus 1.
+
+326
+00:36:32.380 --> 00:36:40.170
+Sofwah Ahmad: So, choosing the values, right, it will give us some idea by luck only.
+
+327
+00:36:40.240 --> 00:36:47.190
+Sofwah Ahmad: by luck only. If our function is well-behaved, then it will show us that, hey, it will go through a certain limit, right?
+
+328
+00:36:47.190 --> 00:37:00.659
+Sofwah Ahmad: But, if our function is not well-behaved, then, it gives us, something really, really bad. So then, we can substitute value just to let us know that, what is the behavior.
+
+329
+00:37:00.710 --> 00:37:04.610
+Sofwah Ahmad: Right? But never to, to, never to,
+
+330
+00:37:04.980 --> 00:37:13.900
+Sofwah Ahmad: to prove whether the limit exists or not. I repeat, when you need to prove whether the limit exists and to compute the limit, you need to calculate the limit itself.
+
+331
+00:37:14.150 --> 00:37:14.870
+Sofwah Ahmad: Yes?
+
+332
+00:37:15.330 --> 00:37:19.210
+Sofwah Ahmad: The second one, second example, right? So…
+
+333
+00:37:19.490 --> 00:37:24.000
+Sofwah Ahmad: Suppose that I want to calculate the limit Hello, not this one.
+
+334
+00:37:24.290 --> 00:37:28.710
+Sofwah Ahmad: The limit, when T goes to 0, HFT.
+
+335
+00:37:29.110 --> 00:37:29.810
+Sofwah Ahmad: Yes?
+
+336
+00:37:30.060 --> 00:37:31.129
+Sofwah Ahmad: H of T.
+
+337
+00:37:31.510 --> 00:37:33.330
+Sofwah Ahmad: Now, Fatma.
+
+338
+00:37:33.660 --> 00:37:37.040
+Sofwah Ahmad: Fatma… Fatma Mazzoli, yes?
+
+339
+00:37:37.310 --> 00:37:40.519
+Sofwah Ahmad: Tell me, what is the limit t goes to 0?
+
+340
+00:37:40.520 --> 00:37:41.630
+fmz: Which one of us?
+
+341
+00:37:42.680 --> 00:37:45.940
+Sofwah Ahmad: Fatma Mazzrui Ahmed, yeah, you.
+
+342
+00:37:46.180 --> 00:37:48.310
+Sofwah Ahmad: Oh, Fatma Yusuf is here already?
+
+343
+00:37:48.580 --> 00:37:49.390
+fmz: Yep.
+
+344
+00:37:49.840 --> 00:37:52.830
+Sofwah Ahmad: Okay, excellent, right? So…
+
+345
+00:37:52.830 --> 00:37:54.410
+fmz: Professor, we will help each other.
+
+346
+00:37:55.130 --> 00:37:56.360
+Sofwah Ahmad: Okay.
+
+347
+00:37:56.800 --> 00:38:06.830
+Sofwah Ahmad: Teamwork, it works too, right? So now, now, from this, from this one, yes? As t approaches from the right, right, when T goes to zero.
+
+348
+00:38:07.430 --> 00:38:11.730
+Sofwah Ahmad: Yes, limit t goes to 0 plus H of T. What's the value?
+
+349
+00:38:16.050 --> 00:38:18.170
+fmz: when T goes to zero.
+
+350
+00:38:18.630 --> 00:38:24.479
+Sofwah Ahmad: Yeah, from the right, though. Limit? Okay, let me make this one bigger, right? The limit?
+
+351
+00:38:24.900 --> 00:38:31.369
+Sofwah Ahmad: Not this one so far. The limit when T goes to 0 plus H of T.
+
+352
+00:38:31.680 --> 00:38:32.520
+Sofwah Ahmad: Right?
+
+353
+00:38:32.740 --> 00:38:35.759
+Sofwah Ahmad: Which path? This path, or this path?
+
+354
+00:38:35.890 --> 00:38:37.900
+Sofwah Ahmad: The top part or the down part?
+
+355
+00:38:39.870 --> 00:38:41.820
+Fatma Almazrouei: Can it be that it doesn't exist?
+
+356
+00:38:42.520 --> 00:38:43.540
+Sofwah Ahmad: Later on.
+
+357
+00:38:43.660 --> 00:38:47.999
+Sofwah Ahmad: Right? But I'm asking you, what is the limit when t approaches 0 from the right?
+
+358
+00:38:49.780 --> 00:38:51.500
+Sofwah Ahmad: From the right, what's the value?
+
+359
+00:38:52.830 --> 00:38:53.570
+Fatma Almazrouei: 1?
+
+360
+00:38:54.560 --> 00:38:55.680
+Sofwah Ahmad: One, why?
+
+361
+00:38:57.030 --> 00:39:00.440
+Fatma Almazrouei: I don't know, but it's on, because the red line is on one.
+
+362
+00:39:01.960 --> 00:39:03.279
+Sofwah Ahmad: Fatma Ahmed.
+
+363
+00:39:03.420 --> 00:39:05.030
+Sofwah Ahmad: Is it 1 or 0?
+
+364
+00:39:10.450 --> 00:39:11.500
+fmz: I won't…
+
+365
+00:39:12.080 --> 00:39:12.840
+Sofwah Ahmad: Why?
+
+366
+00:39:13.400 --> 00:39:14.580
+fmz: Because it's positive.
+
+367
+00:39:15.010 --> 00:39:20.089
+Sofwah Ahmad: Because it's positive, right? Because it is greater than zero. Look, look at this,
+
+368
+00:39:20.410 --> 00:39:23.910
+Sofwah Ahmad: Fatma, Yusuf, right? You have tea.
+
+369
+00:39:24.270 --> 00:39:35.599
+Sofwah Ahmad: Right? This is T. When T is approaching 0 from the right, right, when T is greater than zero, then it is approaching from this part, right? It means that it is positive, sorry. This is 0, this is your T. Yes?
+
+370
+00:39:36.090 --> 00:39:36.800
+Sofwah Ahmad: Yes?
+
+371
+00:39:36.900 --> 00:39:38.250
+Fatma Almazrouei: Neil. Is it okay?
+
+372
+00:39:38.370 --> 00:39:51.560
+Sofwah Ahmad: Yes, good. Right? So in this case, then when t is greater than 0, then you have this one, right? This is equal to 1. Now, what is the limit of t goes to 0 minus?
+
+373
+00:39:52.590 --> 00:39:53.770
+Sofwah Ahmad: H of T.
+
+374
+00:39:55.040 --> 00:39:57.700
+Sofwah Ahmad: No. This one is equal to what?
+
+375
+00:40:00.500 --> 00:40:01.450
+Fatma Almazrouei: early.
+
+376
+00:40:02.830 --> 00:40:04.189
+Fatma Almazrouei: I thought it's still us.
+
+377
+00:40:04.910 --> 00:40:06.240
+Sofwah Ahmad: Yeah, you can alter.
+
+378
+00:40:06.590 --> 00:40:07.410
+Fatma Almazrouei: Okay.
+
+379
+00:40:07.910 --> 00:40:10.310
+Sofwah Ahmad: Yeah. In this case, it is equal to what?
+
+380
+00:40:12.620 --> 00:40:13.470
+Fatma Almazrouei: Zero.
+
+381
+00:40:13.730 --> 00:40:29.770
+Sofwah Ahmad: 0, right? Now, the limit from the right, it gives you… it gives you 1. The limit from the left, it gives you 0. You see? This is from the right. As it's approaching 0 from the right, right? This is the domain, right? Approaching 0 from the right, the function is this one.
+
+382
+00:40:30.230 --> 00:40:35.569
+Sofwah Ahmad: The left, it gives you this one, 0. So then you see that the limit, it doesn't exist.
+
+383
+00:40:36.240 --> 00:40:44.579
+Sofwah Ahmad: Yes? You're right, the limit doesn't exist. And from the graph, you see that at t equal to 0, this one, right, the graph
+
+384
+00:40:44.720 --> 00:40:47.519
+Sofwah Ahmad: It's not, continuing, yes?
+
+385
+00:40:47.950 --> 00:40:50.939
+Sofwah Ahmad: It's not continuing from the left and from the right, it's different.
+
+386
+00:40:51.560 --> 00:40:52.300
+Sofwah Ahmad: Yes?
+
+387
+00:40:52.530 --> 00:41:01.860
+Sofwah Ahmad: So now, we say that, the right-handed limit is when X goes to A, when the domain is approaching A+, right? It is L, and then
+
+388
+00:41:01.860 --> 00:41:13.159
+Sofwah Ahmad: Suppose that you have that from the left, it's also L, then the limit of f of x, it is in… it exists if and only if the left limit and the right limit, they're equal.
+
+389
+00:41:14.210 --> 00:41:14.990
+Sofwah Ahmad: Yes?
+
+390
+00:41:15.620 --> 00:41:18.020
+Sofwah Ahmad: Alright? So now, from this graph.
+
+391
+00:41:18.270 --> 00:41:21.920
+Sofwah Ahmad: Let's try… Okay, who else is there?
+
+392
+00:41:22.380 --> 00:41:23.640
+Sofwah Ahmad: I like this one.
+
+393
+00:41:24.400 --> 00:41:25.669
+Sofwah Ahmad: Where is Omer?
+
+394
+00:41:27.830 --> 00:41:28.610
+Sofwah Ahmad: Omer!
+
+395
+00:41:28.610 --> 00:41:29.830
+Омар Ибрагим: I'm here, yeah.
+
+396
+00:41:30.190 --> 00:41:30.950
+Sofwah Ahmad: Yes.
+
+397
+00:41:31.160 --> 00:41:32.309
+Sofwah Ahmad: Help me, Omer.
+
+398
+00:41:33.010 --> 00:41:33.910
+Sofwah Ahmad: Alright?
+
+399
+00:41:34.100 --> 00:41:39.019
+Sofwah Ahmad: I want to find what is the limit… oopsie… Right? The limit?
+
+400
+00:41:39.660 --> 00:41:44.079
+Sofwah Ahmad: of X goes to this one, right? Minus 3?
+
+401
+00:41:44.600 --> 00:41:47.470
+Sofwah Ahmad: Minus of f of x.
+
+402
+00:41:47.580 --> 00:41:50.759
+Sofwah Ahmad: Here, we are given F of X, right? This is our F.
+
+403
+00:41:50.910 --> 00:41:51.640
+Sofwah Ahmad: Yes?
+
+404
+00:41:52.240 --> 00:41:57.949
+Sofwah Ahmad: The limit on X goes to minus 3 from the left, so this is minus 3, right?
+
+405
+00:41:58.090 --> 00:41:59.359
+Sofwah Ahmad: From the left.
+
+406
+00:41:59.840 --> 00:42:01.880
+Sofwah Ahmad: What is the value of the function?
+
+407
+00:42:03.970 --> 00:42:07.760
+Sofwah Ahmad: As X goes to minus 3 from the left, the function is where?
+
+408
+00:42:08.160 --> 00:42:08.880
+Омар Ибрагим: Or…
+
+409
+00:42:09.540 --> 00:42:25.969
+Sofwah Ahmad: 4, exactly, right? Because the function is just something that is… you start projecting up and down, oh, the function is up, right? Exactly. Yeah? So then it goes to 4. And what is omer, the limit when x goes to minus 3 from the right of f of x?
+
+410
+00:42:30.180 --> 00:42:33.030
+Омар Ибрагим: history from… Good. X.
+
+411
+00:42:33.660 --> 00:42:34.360
+Sofwah Ahmad: Yeah.
+
+412
+00:42:35.010 --> 00:42:36.220
+Sofwah Ahmad: It will be.
+
+413
+00:42:36.460 --> 00:42:37.630
+Sofwah Ahmad: Minus 2.
+
+414
+00:42:37.920 --> 00:42:40.259
+Sofwah Ahmad: Excellent. Does the limit exist?
+
+415
+00:42:42.560 --> 00:42:43.310
+Омар Ибрагим: Jim?
+
+416
+00:42:43.880 --> 00:42:53.599
+Sofwah Ahmad: The limit doesn't exist, Omar. Why? On the other hand, on one hand, you have 4, on the other hand, you have minus 2. Do you see them, do you see them meeting each other?
+
+417
+00:42:54.180 --> 00:42:55.010
+Sofwah Ahmad: No.
+
+418
+00:42:55.150 --> 00:42:59.999
+Sofwah Ahmad: Yes? You don't see them meeting each other. What about the value of the function itself, Omar?
+
+419
+00:43:04.290 --> 00:43:05.330
+Омар Ибрагим: Well, it's sold.
+
+420
+00:43:05.330 --> 00:43:06.259
+Sofwah Ahmad: Why not today.
+
+421
+00:43:07.250 --> 00:43:08.999
+Sofwah Ahmad: F of minus 3 is what?
+
+422
+00:43:11.300 --> 00:43:13.999
+Омар Ибрагим: F of… Okay, one second.
+
+423
+00:43:14.830 --> 00:43:17.180
+Sofwah Ahmad: Yeah, the value of the function itself.
+
+424
+00:43:18.340 --> 00:43:21.899
+Омар Ибрагим: Like, first function is minus 5 is equal 4.
+
+425
+00:43:21.900 --> 00:43:26.420
+Sofwah Ahmad: No, here, I want it to be at minus 3. What is at minus 3?
+
+426
+00:43:26.640 --> 00:43:29.020
+Омар Ибрагим: At minus 3, it's, like, minus 2.
+
+427
+00:43:29.530 --> 00:43:37.559
+Sofwah Ahmad: At minus 3, what you need to look for, right, ladies and gentlemen, is the one with the full circle, right? The full circle occurred here, Omer.
+
+428
+00:43:38.610 --> 00:43:39.400
+Sofwah Ahmad: Yes?
+
+429
+00:43:41.780 --> 00:43:42.950
+Sofwah Ahmad: Do you see it?
+
+430
+00:43:43.980 --> 00:43:46.180
+Sofwah Ahmad: So this one is also equal to 4.
+
+431
+00:43:48.960 --> 00:43:54.469
+Sofwah Ahmad: Right? So what do we see from this one, Omar, right? We see that from this one, the limit.
+
+432
+00:43:56.040 --> 00:44:00.419
+Sofwah Ahmad: Right? Does not exist, right? But the value of the function exists.
+
+433
+00:44:00.820 --> 00:44:01.560
+Sofwah Ahmad: Yes?
+
+434
+00:44:01.860 --> 00:44:05.599
+Sofwah Ahmad: Now, what about when A is equal to minus 1?
+
+435
+00:44:05.990 --> 00:44:08.380
+Sofwah Ahmad: From the graph, we see what?
+
+436
+00:44:08.850 --> 00:44:11.699
+Sofwah Ahmad: What is the limit from the… from the left?
+
+437
+00:44:12.390 --> 00:44:13.360
+Омар Ибрагим: Man, sorry.
+
+438
+00:44:13.360 --> 00:44:13.930
+Sofwah Ahmad: middle.
+
+439
+00:44:14.180 --> 00:44:17.040
+Sofwah Ahmad: The limit from the left of minus 1.
+
+440
+00:44:18.620 --> 00:44:19.670
+Sofwah Ahmad: It's what?
+
+441
+00:44:21.140 --> 00:44:23.620
+Омар Ибрагим: From this minus 1. Minus 1.
+
+442
+00:44:24.130 --> 00:44:25.110
+Sofwah Ahmad: It is one.
+
+443
+00:44:25.750 --> 00:44:27.480
+Sofwah Ahmad: Remember, the value…
+
+444
+00:44:27.490 --> 00:44:28.810
+Омар Ибрагим: Oh, yeah, yeah, yeah, one.
+
+445
+00:44:28.810 --> 00:44:35.959
+Sofwah Ahmad: As you did before, right? The value is the value on the graph. From the left, it is 1. From the right, it is also 1, yes?
+
+446
+00:44:36.800 --> 00:44:37.520
+Sofwah Ahmad: Yes?
+
+447
+00:44:40.060 --> 00:44:40.780
+Омар Ибрагим: Yes.
+
+448
+00:44:42.360 --> 00:44:43.890
+Sofwah Ahmad: Salama, do you get it?
+
+449
+00:44:47.210 --> 00:44:50.750
+Sofwah Ahmad: How many salam I have today? I think I have one, yes?
+
+450
+00:44:50.990 --> 00:44:52.920
+Sofwah Ahmad: Salamah Dahri.
+
+451
+00:44:58.350 --> 00:44:59.430
+Sofwah Ahmad: Salama?
+
+452
+00:45:01.480 --> 00:45:02.950
+Sofwah Ahmad: No. Mira?
+
+453
+00:45:03.120 --> 00:45:04.279
+Salama Aldhaheri: Yes, Professor.
+
+454
+00:45:04.830 --> 00:45:12.150
+Sofwah Ahmad: Yes. Do you get it? What is the limit when X goes to minus 1 from the left and from the right?
+
+455
+00:45:14.200 --> 00:45:15.409
+Sofwah Ahmad: Let me move here.
+
+456
+00:45:15.520 --> 00:45:19.320
+Sofwah Ahmad: Yes? F minus 1 is 3. If I ask you, what is the limit?
+
+457
+00:45:19.640 --> 00:45:22.119
+Sofwah Ahmad: When X goes to minus 1 from the left.
+
+458
+00:45:24.600 --> 00:45:26.080
+Salama Aldhaheri: Minus 2?
+
+459
+00:45:27.710 --> 00:45:40.569
+Sofwah Ahmad: Look, you need to see this one, right? What is minus 1 here? This is minus 1, yes? Then I want to care about here, yes? When X goes to minus 1… let me zoom in, yes? Yeah, this one is better.
+
+460
+00:45:41.030 --> 00:45:43.979
+Sofwah Ahmad: When X goes to minus 1, right?
+
+461
+00:45:44.320 --> 00:45:50.530
+Sofwah Ahmad: Yes, from the left. What is the value of the function? I see the one with the red color, yes?
+
+462
+00:45:51.040 --> 00:45:53.890
+Sofwah Ahmad: Then this one is just this one.
+
+463
+00:45:54.510 --> 00:45:55.260
+Sofwah Ahmad: Right?
+
+464
+00:45:56.060 --> 00:45:58.700
+Sofwah Ahmad: So it goes to… 1.
+
+465
+00:45:59.610 --> 00:46:07.799
+Sofwah Ahmad: Yes? When X is going to minus 1 from the right, then it goes to also this one, right? You just take the image.
+
+466
+00:46:08.210 --> 00:46:11.009
+Sofwah Ahmad: Yes? Then it's going to also to 1.
+
+467
+00:46:12.320 --> 00:46:13.720
+Sofwah Ahmad: Mira, is it okay?
+
+468
+00:46:18.910 --> 00:46:20.299
+Sofwah Ahmad: Mira, are you there?
+
+469
+00:46:23.520 --> 00:46:25.070
+Sofwah Ahmad: Okay, right?
+
+470
+00:46:25.300 --> 00:46:33.729
+Sofwah Ahmad: You need to revise this one, yes? So in this case that the limit exists, it is equal to 1, and then the value of the function, it equals to minus 3.
+
+471
+00:46:34.930 --> 00:46:36.989
+Sofwah Ahmad: Right? So far, good.
+
+472
+00:46:41.170 --> 00:46:42.350
+Sofwah Ahmad: Guys, in this…
+
+473
+00:46:42.640 --> 00:46:48.609
+Sofwah Ahmad: Part, if you don't, communicate, then it's very hard for me to see whether you get it or not.
+
+474
+00:46:49.410 --> 00:46:49.950
+Fatma Almazrouei: We can…
+
+475
+00:46:49.950 --> 00:46:54.060
+Sofwah Ahmad: I can check in, yes? For this one, Salam, is it okay?
+
+476
+00:46:55.860 --> 00:46:56.960
+Sofwah Ahmad: I'll repeat.
+
+477
+00:47:03.710 --> 00:47:06.600
+Fatma Almazrouei: Professor, they put thumbs up for you if you can't see.
+
+478
+00:47:07.130 --> 00:47:11.960
+Sofwah Ahmad: Okay, okay. Make sound shits better, right? Make sound shits better.
+
+479
+00:47:12.280 --> 00:47:16.620
+Sofwah Ahmad: Because, my eyes is on, actually the iPad also.
+
+480
+00:47:16.780 --> 00:47:22.979
+Sofwah Ahmad: So now, computing the limits. Excellent. So, the first one is that whenever you have,
+
+481
+00:47:23.420 --> 00:47:33.999
+Sofwah Ahmad: a constant function, let's say that you have Y equals to C here, right? Wherever you are, right, from the left or from the right, then the function is always, is always C.
+
+482
+00:47:34.030 --> 00:47:45.999
+Sofwah Ahmad: So, nothing, nothing special. The second one is that the limit of X goes to AX, it's just, it's equal to A, right? What you do is that whenever you see X here, you just substitute to A.
+
+483
+00:47:46.280 --> 00:47:55.109
+Sofwah Ahmad: The third one is that the limit of, the limit when x goes to A of C, of f of x, right? This C can go out.
+
+484
+00:47:55.110 --> 00:48:08.470
+Sofwah Ahmad: Yes? Then you have the C of the limit. So you see that the limit of a function multiplied by a constant is the same as that multiplication by a constant, so you compute the limit first, and then you multiply by the constant later.
+
+485
+00:48:08.940 --> 00:48:20.690
+Sofwah Ahmad: The fourth one is that if you have the limit of 2 addition, right, the limit of F plus G is the same as computing the limit of F plus the limit of G.
+
+486
+00:48:21.260 --> 00:48:40.779
+Sofwah Ahmad: Right? So, for example, if you have the limit of X squared plus 4X, X goes to 2, right? Then you can split it, right? The limit X goes to 2. X squared plus the limit of X goes to 2, or 4X, yes? In this case, you can just, substitute. X is equal to 2.
+
+487
+00:48:40.880 --> 00:48:52.590
+Sofwah Ahmad: Now, the rest is the same, right? Whenever you have the multiplication, only if each of the limits exists, I repeat, only if each of the limits exists that you can split, yes?
+
+488
+00:48:52.750 --> 00:49:00.040
+Sofwah Ahmad: If I give you, for example, the limit X goes to 0 sine x over x, you cannot
+
+489
+00:49:00.040 --> 00:49:19.689
+Sofwah Ahmad: do the limit X goes to 0, sine of x, times the limit X goes to 0, 1 over X. Why? Because this one, it doesn't exist, right? By exist, it means that it equals to… it equals to the real number, right? But when I ask you to compute, try this one first, right? If it gives you something weird.
+
+490
+00:49:19.690 --> 00:49:23.000
+Sofwah Ahmad: then don't do it, right? Then you need to do more about it.
+
+491
+00:49:23.720 --> 00:49:38.909
+Sofwah Ahmad: And so on. If you know what is the limit of f of x, right, when you raise it to the power n, whatever limit that you have, you just raise it to the power n, or you raise it to the power of the square root. This one is the same thing. Let's take a look at the example. Again.
+
+492
+00:49:38.910 --> 00:49:58.619
+Sofwah Ahmad: If I ask you to calculate the limit, do not panic. The first thing, the first step that you need to do is just substitute. If substitution work, then good. This is what you get, right? So the first thing, compute limit Z goes to one of the following one. What you need to do is that try the quotient rule, right? See if it leads you somewhere.
+
+493
+00:49:58.640 --> 00:50:06.879
+Sofwah Ahmad: Okay, when you substitute Z is equal to 1, right? When you substitute Z equals to 1, then you see no problem. That's your… that's your limit.
+
+494
+00:50:07.050 --> 00:50:07.840
+Sofwah Ahmad: Yes?
+
+495
+00:50:08.290 --> 00:50:10.140
+Sofwah Ahmad: Right? So far, good.
+
+496
+00:50:11.220 --> 00:50:12.570
+Sofwah Ahmad: Ali, is it good?
+
+497
+00:50:14.430 --> 00:50:15.250
+ali.yaarobi: Yes, miss.
+
+498
+00:50:15.820 --> 00:50:16.980
+Sofwah Ahmad: Omer, is it good?
+
+499
+00:50:19.650 --> 00:50:20.390
+Омар Ибрагим: Yes.
+
+500
+00:50:21.330 --> 00:50:36.349
+Sofwah Ahmad: Okay, so what you need to do is that you just need to substitute. Now, sometimes, when you substitute, here, when you have this one, right, what I want you to do is also start substituting, right? This is always your first attack, right? The first attack should be, like, the easiest one.
+
+501
+00:50:36.510 --> 00:50:42.999
+Sofwah Ahmad: Right? If you substitute 2 here, you will see that you will encounter the denominator equals 0.
+
+502
+00:50:43.050 --> 00:51:02.609
+Sofwah Ahmad: Yes? The denominator, it will be equal 0. So, quotient rule is not applicable. What do you need to do, then? What you need to do is that you need to work on the functions even more. Start factorizing up and down, if you can, yes? In this case, since you have polynomial, then you can. You factorize it, then you can start canceling. Aha!
+
+503
+00:51:03.150 --> 00:51:07.430
+Sofwah Ahmad: Yes? Now, again, after that, what do you do? You substitute.
+
+504
+00:51:07.820 --> 00:51:09.720
+Sofwah Ahmad: Yes? You substitute this one.
+
+505
+00:51:10.610 --> 00:51:16.570
+Sofwah Ahmad: When you substitute this one, then you have no problem, okay? Now.
+
+506
+00:51:18.740 --> 00:51:35.069
+Sofwah Ahmad: I will not give you a L'Hopital Rule here, but we already discussed L'Hopital Rule in the bridge program, right? So as soon as you have 0 over 0, if, by choice, you want to take the derivative of the top part and to the bottom part, I will allow you.
+
+507
+00:51:35.220 --> 00:51:45.570
+Sofwah Ahmad: Why? Because later on, our quiz will also contain derivative and limits, right? So then, all the hacks that you have from Bridge, you can use it here.
+
+508
+00:51:45.890 --> 00:51:59.920
+Sofwah Ahmad: Okay? Now, also the same game. If it's rationalizing, right? If I substitute 0 here, yes, it will be 0, then I will have square root of 2 minus square root of 2 divided by 0, which is 0 over 0, yes?
+
+509
+00:52:00.100 --> 00:52:04.960
+Sofwah Ahmad: The correct way is that you need to multiply by conjugate. When you see minus here.
+
+510
+00:52:05.740 --> 00:52:21.180
+Sofwah Ahmad: You need to… sorry. You need to multiply by, by, by its conjugate, plus, yes? And then, as soon as you do, you know that you can always, simplify, right? Again, if you want to use L'Hopital rule, you can also.
+
+511
+00:52:21.330 --> 00:52:30.739
+Sofwah Ahmad: Yes? But it will give you something, right? So, the first step is always substitute. If it doesn't work, work it out, right? Right? Simplify it, and then substitute again.
+
+512
+00:52:31.080 --> 00:52:31.970
+Sofwah Ahmad: Alright?
+
+513
+00:52:32.110 --> 00:52:41.089
+Sofwah Ahmad: Now, the limit of trigonometry function, right? Now you already know what is the trigonometry. Sine, cosine, tan, tan is just sine t over…
+
+514
+00:52:41.090 --> 00:53:01.060
+Sofwah Ahmad: Cosine T, right? Now, for every real number in the domain, right, in the functions domain, then you can just substitute. It means what? It means that if you're just substituting C, it gives you no problem, then substitute. If not, work it out. What do I mean by a problem? Here, wherever you have 10, for example, you have a division here.
+
+515
+00:53:01.060 --> 00:53:08.040
+Sofwah Ahmad: Whenever the division, will be zero, then, then you work it out there. Yes?
+
+516
+00:53:08.530 --> 00:53:25.859
+Sofwah Ahmad: So here, find the limit t goes to 0, t squared cosine T divided by T plus 1. Okay? Now, what we do is that we just, we just split, right? This cosine T to the other side, then you compute this part, yes, this is 0, and this part is going to be 1.
+
+517
+00:53:26.110 --> 00:53:34.689
+Sofwah Ahmad: So, here is what you get, right? These special trigonometric limits are the limits that I expect you guys to know, yes?
+
+518
+00:53:34.970 --> 00:53:40.959
+Sofwah Ahmad: That I expect you guys to… to know. Right? Just, okay.
+
+519
+00:53:41.410 --> 00:53:43.169
+Sofwah Ahmad: One second.
+
+520
+00:53:43.390 --> 00:53:44.350
+Sofwah Ahmad: Yeah.
+
+521
+00:53:45.390 --> 00:53:57.859
+Sofwah Ahmad: just allow me to finish with the… with this one, the example, yes? Sine 3x over X. Let me write what is the rules. The rules that you have, t goes to 0,
+
+522
+00:53:58.540 --> 00:53:59.620
+Sofwah Ahmad: Sign.
+
+523
+00:53:59.820 --> 00:54:03.079
+Sofwah Ahmad: T over T, this is equal to 0.
+
+524
+00:54:03.230 --> 00:54:04.020
+Sofwah Ahmad: Yes?
+
+525
+00:54:04.520 --> 00:54:07.799
+Sofwah Ahmad: So now, allow me to ask, Hamdan.
+
+526
+00:54:08.550 --> 00:54:10.080
+Sofwah Ahmad: Muhammad Hamdan.
+
+527
+00:54:10.350 --> 00:54:11.960
+Sofwah Ahmad: What should we do here?
+
+528
+00:54:12.980 --> 00:54:14.320
+Sofwah Ahmad: For the part,
+
+529
+00:54:19.920 --> 00:54:21.029
+Sofwah Ahmad: Sorry, not zero, this is one.
+
+530
+00:54:21.030 --> 00:54:21.630
+mohamed hemdan: We…
+
+531
+00:54:24.360 --> 00:54:29.170
+mohamed hemdan: We can make it, like, limit 1 over X, okay, we can make it 1 limit 1 over X.
+
+532
+00:54:29.600 --> 00:54:33.889
+mohamed hemdan: We cannot. Oh, it's a special trigonometry function, right?
+
+533
+00:54:34.090 --> 00:54:34.770
+Sofwah Ahmad: Yeah.
+
+534
+00:54:34.920 --> 00:54:38.870
+mohamed hemdan: It equals… so you just substitute for the specialty, right?
+
+535
+00:54:39.130 --> 00:54:45.450
+Sofwah Ahmad: Yeah, but the special trigonometry says that I have sine of t divided by T. Both of them needs to be the same.
+
+536
+00:54:46.020 --> 00:54:50.070
+Sofwah Ahmad: So, in this case, I have 3X, and this one is still X. What do we do?
+
+537
+00:54:51.110 --> 00:54:51.780
+mohamed hemdan: Hmm.
+
+538
+00:54:53.850 --> 00:54:54.950
+Sofwah Ahmad: Take a guess.
+
+539
+00:54:57.150 --> 00:55:01.220
+mohamed hemdan: the… Okay, we can't do that.
+
+540
+00:55:05.510 --> 00:55:06.360
+Sofwah Ahmad: Take a guess?
+
+541
+00:55:08.050 --> 00:55:09.600
+Sofwah Ahmad: Actor, what do we do?
+
+542
+00:55:12.290 --> 00:55:13.940
+Aktore Myrzakassym: Maybe squaring them?
+
+543
+00:55:14.570 --> 00:55:15.130
+Aktore Myrzakassym: I agree.
+
+544
+00:55:15.130 --> 00:55:23.179
+Sofwah Ahmad: Where is that? Not really. Look, we have T here, guys, yes? We have T, yes? Here needs to be T. What do we have here? 3X, yes?
+
+545
+00:55:23.740 --> 00:55:37.479
+Sofwah Ahmad: If only this one is the same, right, then it's equal to 1. But to make it the same, we need to divide by 3X, then we need to multiply by 3 also. Yes? Divide and multiply. So far clear?
+
+546
+00:55:38.000 --> 00:55:38.750
+mohamed hemdan: Okay.
+
+547
+00:55:39.220 --> 00:55:43.139
+Sofwah Ahmad: Yes? Then what do we do? Then what do we do? It's very, very simple, yes?
+
+548
+00:55:43.300 --> 00:55:44.890
+Sofwah Ahmad: Lutherie can go out.
+
+549
+00:55:46.640 --> 00:55:47.420
+Sofwah Ahmad: Roy?
+
+550
+00:55:47.630 --> 00:56:03.629
+Sofwah Ahmad: And then let's just use the trigonometry limit, yes? From now on, yes, if I have also the same thing, sine A of X divided by X, what I can do for the limit when x goes to 0 is that I can multiply by A divided by A.
+
+551
+00:56:03.850 --> 00:56:07.220
+Sofwah Ahmad: Yes? Then it will give me A times 1.
+
+552
+00:56:07.410 --> 00:56:22.369
+Sofwah Ahmad: This is A. So, in the future, if I have the limit X goes to 0 sine of AX divided by BX, you don't need to… you don't need to re-derive it. Later on, you can just use it, that A over B.
+
+553
+00:56:22.940 --> 00:56:24.040
+Sofwah Ahmad: Is it clear?
+
+554
+00:56:25.040 --> 00:56:39.690
+Sofwah Ahmad: Yes, this is the rule that you can use in the exam to save time, yes? Also, when you have the limit X goes to 0, BX divided by sine AX, this is just B over A. So you just take the coefficient of X,
+
+555
+00:56:39.690 --> 00:56:40.320
+mohamed hemdan: nature.
+
+556
+00:56:40.890 --> 00:56:42.100
+Sofwah Ahmad: Yes? Okay.
+
+557
+00:56:42.360 --> 00:56:56.320
+Sofwah Ahmad: Yes? Now, same game, right? What about this? 1 minus cosine T divided by sine t. The rules that we have here is that, what, the limit when t goes to 0, 1 minus cosine T divided by t. Yes?
+
+558
+00:56:56.390 --> 00:57:08.229
+Sofwah Ahmad: is equal to 0. But here, what we have is divided by sine t. If only here we have t, then it will be good, right? If we want to make T appear, we need to cancel it with T.
+
+559
+00:57:08.480 --> 00:57:13.200
+Sofwah Ahmad: Yes? So we multiply by T over T, and this is what we have, yes?
+
+560
+00:57:14.690 --> 00:57:15.380
+Sofwah Ahmad: Yes?
+
+561
+00:57:16.430 --> 00:57:17.519
+Sofwah Ahmad: There you go.
+
+562
+00:57:17.950 --> 00:57:35.189
+Sofwah Ahmad: Then we can split the limit, right? Same game with 10, also, right? This is sine 4x, so the idea is that we call sine 4x… it needs to be divided by 4X, right? But then multiply by, 4X divided by 10X, yes?
+
+563
+00:57:35.550 --> 00:57:40.590
+Sofwah Ahmad: Because what we have is sine 4x and tan x, yes? This one and this one, correct?
+
+564
+00:57:41.350 --> 00:57:42.080
+Sofwah Ahmad: Yes?
+
+565
+00:57:42.200 --> 00:57:53.220
+Sofwah Ahmad: Now, following that one, then we will have it here. So later on, again, in the exam, if I give you limit of t, or X goes to 0,
+
+566
+00:57:53.350 --> 00:57:58.000
+Sofwah Ahmad: sine of AX divided by tan of BX, Yes?
+
+567
+00:57:58.190 --> 00:58:02.979
+Sofwah Ahmad: This is always equals to A over B. If you flip it, also it's equal to B over A.
+
+568
+00:58:03.590 --> 00:58:04.420
+Sofwah Ahmad: Okay?
+
+569
+00:58:05.710 --> 00:58:21.530
+Sofwah Ahmad: So, okay, the last, the other class, we go until Squeeze theorem, but I will, I will go with you, with you tomorrow. So, for the limit, you just need to, to substitute. I'm going to stop sharing, don't leave first, I just need to take screen captures of the participants.
+
+570
+00:58:22.790 --> 00:58:23.680
+fmz: trusted?
+
+571
+00:58:24.410 --> 00:58:25.150
+Sofwah Ahmad: Please.
+
+572
+00:58:25.550 --> 00:58:40.620
+fmz: Nora and Rova, they couldn't join, but I sent them the photos of the slides as we were going, and I was explaining a little bit. So if you can excuse their attendance today, but they'll join in the next one, I think they'll send you a message on Teams for the help with the link.
+
+573
+00:58:41.570 --> 00:58:44.589
+Sofwah Ahmad: I see, but I thought that they were joining before, no? For a moment?
+
+574
+00:58:45.000 --> 00:58:53.150
+Sofwah Ahmad: Oh, no, Nora is not joining, yeah, Roda cannot. Okay, I will work. Send an email to IT and CC me, please.
+
+575
+00:58:53.150 --> 00:59:05.559
+Sofwah Ahmad: And guys, I might consider to create, an MS Teams, an MS Teams, group, right? So you guys can, receive, something in case Moodle is down, like last night.
+
+576
+00:59:05.780 --> 00:59:10.119
+Sofwah Ahmad: Again, for the midterm, I will update you as soon as I have more informations.
+
+577
+00:59:10.310 --> 00:59:24.470
+Sofwah Ahmad: But please practice. There might be a chance that it will be on, on Friday, right? I don't know whether it will be online or not. Even if it's not Friday, when is it? I… I will get back to you, right? But for this Wednesday, it will be 11.
+
+578
+00:59:24.860 --> 00:59:31.059
+Sofwah Ahmad: So I thank you very much for attending. Again, for the next class, it is based on the Provost's,
+
+579
+00:59:31.530 --> 00:59:46.239
+Sofwah Ahmad: direction that it needs to be camera on, yes? Those of you who have some problems with your camera, please contact IT. I will give you some name. Mr. No, this is for everyone.
+
+580
+00:59:46.480 --> 00:59:48.589
+Sofwah Ahmad: How do I change to everyone?
+
+581
+00:59:48.750 --> 00:59:49.540
+Sofwah Ahmad: Brent.
+
+582
+00:59:49.700 --> 00:59:50.600
+Sofwah Ahmad: No.
+
+583
+00:59:51.510 --> 00:59:54.540
+Sofwah Ahmad: Okay, meeting group chat. Mr.
+
+584
+00:59:54.820 --> 01:00:06.350
+Sofwah Ahmad: Right? He's very helpful, yes? He's very helpful. Contact the IT, ensure that since tomorrow, that, the camera should be on.
+
+585
+01:00:07.000 --> 01:00:12.470
+Sofwah Ahmad: So stay safe, everyone. I wish you a very good day. Anything that you need, just let me know.
+
+586
+01:00:13.070 --> 01:00:17.539
+arthur.leontev: Yeah, I have a question. How do you think… is it possible that our online classes will be extended?
+
+587
+01:00:17.680 --> 01:00:18.510
+arthur.leontev: Whoa.
+
+588
+01:00:19.020 --> 01:00:20.320
+arthur.leontev: We cannot assume.
+
+589
+01:00:20.630 --> 01:00:27.659
+Sofwah Ahmad: To be honest, that the email that we receive is that the online classes will be until Wednesday, until further notice.
+
+590
+01:00:27.760 --> 01:00:47.370
+Sofwah Ahmad: So, but for the moment, for me, I schedule the online classes till the end of the semester. I do not expect it to be that much, right? But then, just in case that I need to… rather than for me to keep joining, so the link that you have is for the entire… for… for each occurring week.
+
+591
+01:00:47.600 --> 01:00:49.299
+arthur.leontev: Yeah, COVID fights.
+
+592
+01:00:49.690 --> 01:00:55.250
+Sofwah Ahmad: Yeah, I hope… I hope that it doesn't, it doesn't stay long, because it's, yeah.
+
+593
+01:00:55.640 --> 01:01:03.330
+Sofwah Ahmad: Guys, I hope that today's class is okay, right? But I really need your participation to understand whether you understand or not.
+
+594
+01:01:04.460 --> 01:01:08.739
+Sofwah Ahmad: So yeah, quizzes also, I will let you know later, yes? But for the moment…
+
+595
+01:01:08.740 --> 01:01:10.870
+arthur.leontev: But you will drop today your Excel sheet, right?
+
+596
+01:01:10.870 --> 01:01:13.759
+Sofwah Ahmad: I will, I will. After this one, I will, I promise.
+
+597
+01:01:14.120 --> 01:01:16.090
+arthur.leontev: Okay, cool. Okay, thank you, Professor.
+
+598
+01:01:16.490 --> 01:01:18.039
+Sofwah Ahmad: Okay, thank you very much.
+
+599
+01:01:18.040 --> 01:01:19.040
+Fatma Almazrouei: Okay.
+
+600
+01:01:19.840 --> 01:01:21.100
+Омар Ибрагим: Thank you, Professor.
+
+601
+01:01:21.410 --> 01:01:23.399
+Sofwah Ahmad: Thank you. Stay safer.
+
+602
+01:01:23.400 --> 01:01:25.019
+Aktore Myrzakassym: Thank you, see, Professor.
+
+603
+01:01:25.230 --> 01:01:26.050
+Sofwah Ahmad: See ya.
+
+604
+01:01:29.230 --> 01:01:30.750
+Rawda Alkhoori: Have a good day, Professor.
+
+605
+01:01:30.930 --> 01:01:32.450
+Sofwah Ahmad: You too. You too.
+

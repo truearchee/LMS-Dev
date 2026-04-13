@@ -7,44 +7,47 @@ const BCRYPT_ROUNDS = 12;
 async function main() {
   console.log('🌱 Seeding database...');
 
-  // ── 1. Users ───────────────────────────────────────────────────────────────
-  const adminPw   = await bcrypt.hash('admin123!',   BCRYPT_ROUNDS);
-  const teacherPw = await bcrypt.hash('teacher123!', BCRYPT_ROUNDS);
-  const studentPw = await bcrypt.hash('student123!', BCRYPT_ROUNDS);
+  // ── 1. Users ────────────────────────────────────────────────────────────────
+  const adminPw   = await bcrypt.hash('admin123',   BCRYPT_ROUNDS);
+  const teacherPw = await bcrypt.hash('teacher123', BCRYPT_ROUNDS);
+  const studentPw = await bcrypt.hash('student123', BCRYPT_ROUNDS);
 
   const admin = await prisma.user.upsert({
-    where:  { email: 'admin@lms.dev' },
+    where:  { email: 'admin@mbzuai.ac.ae' },
     update: {},
-    create: { name: 'System Admin', email: 'admin@lms.dev', password: adminPw, role: 'ADMIN' },
+    create: { name: 'System Admin', email: 'admin@mbzuai.ac.ae', password: adminPw, role: 'ADMIN' },
   });
 
   const teacher = await prisma.user.upsert({
-    where:  { email: 'teacher@lms.dev' },
+    where:  { email: 'teacher@mbzuai.ac.ae' },
     update: {},
-    create: { name: 'Dr. Anna Ivanova', email: 'teacher@lms.dev', password: teacherPw, role: 'TEACHER' },
+    create: { name: 'Dr. Anna Ivanova', email: 'teacher@mbzuai.ac.ae', password: teacherPw, role: 'TEACHER' },
   });
 
-  const student1 = await prisma.user.upsert({
-    where:  { email: 'artur@lms.dev' },
-    update: {},
-    create: { name: 'Artur Leontev', email: 'artur@lms.dev', password: studentPw, role: 'STUDENT' },
-  });
+  const students = await Promise.all(
+    [1, 2, 3, 4, 5].map(n =>
+      prisma.user.upsert({
+        where:  { email: `student${n}@mbzuai.ac.ae` },
+        update: {},
+        create: {
+          name:     `Student ${n}`,
+          email:    `student${n}@mbzuai.ac.ae`,
+          password: studentPw,
+          role:     'STUDENT',
+        },
+      }),
+    ),
+  );
 
-  const student2 = await prisma.user.upsert({
-    where:  { email: 'maria@lms.dev' },
-    update: {},
-    create: { name: 'Maria Petrova', email: 'maria@lms.dev', password: studentPw, role: 'STUDENT' },
-  });
+  console.log(`  ✓ Users: ${admin.name}, ${teacher.name}, ${students.map(s => s.name).join(', ')}`);
 
-  console.log(`  ✓ Users: ${admin.name}, ${teacher.name}, ${student1.name}, ${student2.name}`);
-
-  // ── 2. Course ──────────────────────────────────────────────────────────────
+  // ── 2. Course ────────────────────────────────────────────────────────────────
   const course = await prisma.course.upsert({
-    where:  { id: 'calculus-101' },
+    where:  { id: 'calculus-linear-algebra' },
     update: {},
     create: {
-      id:          'calculus-101',
-      title:       'Calculus & Linear Algebra',
+      id:          'calculus-linear-algebra',
+      title:       'Calculus and Linear Algebra',
       description: 'A rigorous first-year mathematics course covering limits, derivatives, integrals, and matrix algebra.',
       teacherId:   teacher.id,
     },
@@ -52,145 +55,118 @@ async function main() {
 
   console.log(`  ✓ Course: ${course.title}`);
 
-  // ── 3. Enroll students ─────────────────────────────────────────────────────
-  await prisma.enrollment.upsert({
-    where:  { userId_courseId: { userId: student1.id, courseId: course.id } },
-    update: {},
-    create: { userId: student1.id, courseId: course.id },
-  });
+  // ── 3. Enroll all 5 students ─────────────────────────────────────────────────
+  for (const student of students) {
+    await prisma.enrollment.upsert({
+      where:  { userId_courseId: { userId: student.id, courseId: course.id } },
+      update: {},
+      create: { userId: student.id, courseId: course.id },
+    });
+  }
 
-  await prisma.enrollment.upsert({
-    where:  { userId_courseId: { userId: student2.id, courseId: course.id } },
-    update: {},
-    create: { userId: student2.id, courseId: course.id },
-  });
+  console.log(`  ✓ Enrolled: ${students.length} students`);
 
-  console.log(`  ✓ Enrolled: ${student1.name}, ${student2.name}`);
+  // ── 4. Lectures ──────────────────────────────────────────────────────────────
+  // MWF schedule starting 2026-01-05
+  // Week 1: Jan 5 (Mon), Jan 7 (Wed), Jan 9 (Fri)
+  // Week 2: Jan 12 (Mon), Jan 14 (Wed), Jan 16 (Fri)
+  // Week 3: Jan 19 (Mon), Jan 21 (Wed), Jan 23 (Fri)
+  // Week 4: Jan 26 (Mon), Jan 28 (Wed), Jan 30 (Fri)
+  const lectureData = [
+    // Week 1
+    { id: 'lec-01', moduleNumber: 1, orderIndex: 1,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-05T09:00:00Z'), title: 'Lecture 1: Limits and Continuity',                  description: 'Introduction to the epsilon-delta definition of limits. Covers one-sided limits and continuity.' },
+    { id: 'lec-02', moduleNumber: 1, orderIndex: 2,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-07T09:00:00Z'), title: 'Lecture 2: Derivatives and Differentiation Rules',  description: 'Power rule, product rule, quotient rule, and chain rule with worked examples.' },
+    { id: 'lec-03', moduleNumber: 1, orderIndex: 3,  contentType: 'LAB',     scheduledAt: new Date('2026-01-09T09:00:00Z'), title: 'Lab 1: Problem Set 1',                              description: 'Practice problems on limits and derivatives.' },
+    // Week 2
+    { id: 'lec-04', moduleNumber: 2, orderIndex: 4,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-12T09:00:00Z'), title: 'Lecture 3: Derivatives — Part I',                   description: 'Higher-order derivatives, implicit differentiation, and related rates.' },
+    { id: 'lec-05', moduleNumber: 2, orderIndex: 5,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-14T09:00:00Z'), title: 'Lecture 4: Derivatives — Part II',                  description: 'Mean value theorem, L\'Hôpital\'s rule, and optimization.' },
+    { id: 'lec-06', moduleNumber: 2, orderIndex: 6,  contentType: 'QUIZ',    scheduledAt: new Date('2026-01-16T09:00:00Z'), title: 'Quiz 1: Midterm Quiz — Weeks 1–2',                  description: 'Quiz covering limits, continuity, and differentiation.' },
+    // Week 3
+    { id: 'lec-07', moduleNumber: 3, orderIndex: 7,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-19T09:00:00Z'), title: 'Lecture 5: Chain Rule and Implicit Differentiation', description: 'Composite functions, the chain rule, and implicit differentiation techniques.' },
+    { id: 'lec-08', moduleNumber: 3, orderIndex: 8,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-21T09:00:00Z'), title: 'Lecture 6: Applications of Derivatives',             description: 'Curve sketching, concavity, inflection points, and optimization problems.' },
+    { id: 'lec-09', moduleNumber: 3, orderIndex: 9,  contentType: 'LAB',     scheduledAt: new Date('2026-01-23T09:00:00Z'), title: 'Lab 2: Problem Set 2',                              description: 'Practice problems on the chain rule and applications.' },
+    // Week 4
+    { id: 'lec-10', moduleNumber: 4, orderIndex: 10, contentType: 'LECTURE', scheduledAt: new Date('2026-01-26T09:00:00Z'), title: 'Lecture 7: Introduction to Integration',             description: 'Antiderivatives, indefinite integrals, and basic integration rules.' },
+    { id: 'lec-11', moduleNumber: 4, orderIndex: 11, contentType: 'LECTURE', scheduledAt: new Date('2026-01-28T09:00:00Z'), title: 'Lecture 8: The Fundamental Theorem of Calculus',     description: 'The two parts of the Fundamental Theorem and their applications.' },
+    { id: 'lec-12', moduleNumber: 4, orderIndex: 12, contentType: 'QUIZ',    scheduledAt: new Date('2026-01-30T09:00:00Z'), title: 'Quiz 2: Quiz — Weeks 3–4',                          description: 'Quiz covering integration and the Fundamental Theorem of Calculus.' },
+  ];
 
-  // ── 4. Lectures ────────────────────────────────────────────────────────────
-  const lecture1 = await prisma.lecture.upsert({
-    where:  { id: 'lecture-limits-001' },
-    update: {},
-    create: {
-      id:              'lecture-limits-001',
-      courseId:        course.id,
-      title:           'Lecture 1: Limits and Continuity',
-      description:     'Introduction to the epsilon-delta definition of limits. Covers one-sided limits and continuity.',
-      moduleNumber:    1,
-      orderIndex:      1,
-      durationMinutes: 90,
-    },
-  });
+  const lectures: Record<string, { id: string }> = {};
+  for (const data of lectureData) {
+    const lecture = await prisma.lecture.upsert({
+      where:  { id: data.id },
+      update: {},
+      create: {
+        id:              data.id,
+        courseId:        course.id,
+        title:           data.title,
+        description:     data.description,
+        moduleNumber:    data.moduleNumber,
+        orderIndex:      data.orderIndex,
+        contentType:     data.contentType,
+        scheduledAt:     data.scheduledAt,
+        durationMinutes: data.contentType === 'QUIZ' ? 60 : 90,
+      },
+    });
+    lectures[data.id] = lecture;
+  }
 
-  const lecture2 = await prisma.lecture.upsert({
-    where:  { id: 'lecture-derivatives-002' },
-    update: {},
-    create: {
-      id:              'lecture-derivatives-002',
-      courseId:        course.id,
-      title:           'Lecture 2: Derivatives and Differentiation Rules',
-      description:     'Power rule, product rule, quotient rule, and chain rule with worked examples.',
-      moduleNumber:    1,
-      orderIndex:      2,
-      durationMinutes: 90,
-    },
-  });
+  console.log(`  ✓ Lectures: ${lectureData.length} lectures (${lectureData.filter(l => l.contentType === 'LECTURE').length} LECTURE, ${lectureData.filter(l => l.contentType === 'LAB').length} LAB, ${lectureData.filter(l => l.contentType === 'QUIZ').length} QUIZ)`);
 
-  console.log(`  ✓ Lectures: ${lecture1.title}, ${lecture2.title}`);
-
-  // ── Lecture files ──────────────────────────────────────────────────────────
-  await prisma.lectureFile.upsert({
-    where:  { id: 'file-l1-slides' },
-    update: {},
-    create: {
-      id:        'file-l1-slides',
-      lectureId: lecture1.id,
-      type:      'SLIDES',
-      label:     'Lecture 1 – Slides.pdf',
-      url:       'http://localhost:3001/uploads/placeholder-l1-slides.pdf',
-      mimeType:  'application/pdf',
-    },
-  });
-
-  await prisma.lectureFile.upsert({
-    where:  { id: 'file-l2-slides' },
-    update: {},
-    create: {
-      id:        'file-l2-slides',
-      lectureId: lecture2.id,
-      type:      'SLIDES',
-      label:     'Lecture 2 – Slides.pdf',
-      url:       'http://localhost:3001/uploads/placeholder-l2-slides.pdf',
-      mimeType:  'application/pdf',
-    },
-  });
-
-  console.log('  ✓ Lecture files: 2 placeholder PDFs');
-
-  // ── 5. Transcripts + AIJobs ────────────────────────────────────────────────
+  // ── 5. Transcripts ───────────────────────────────────────────────────────────
   const transcript1 = await prisma.transcript.upsert({
-    where:  { id: 'transcript-l1' },
+    where:  { id: 'transcript-lec-01' },
     update: {},
     create: {
-      id:         'transcript-l1',
-      lectureId:  lecture1.id,
+      id:         'transcript-lec-01',
+      lectureId:  lectures['lec-01'].id,
       source:     'ZOOM',
-      rawContent: `Welcome everyone to Lecture 1 on Limits and Continuity. Today we'll begin with the intuitive notion of a limit. 
-As x approaches a value c, what does f(x) approach? We write this as: lim(x→c) f(x) = L.
-The formal epsilon-delta definition states that for every ε > 0 there exists δ > 0 such that if 0 < |x - c| < δ then |f(x) - L| < ε.
-A function is continuous at c if the limit exists, equals f(c), and f(c) is defined.
-Common pitfalls include confusing the limit value with the function value and handling removable discontinuities.`,
       status:     'PENDING',
+      rawContent: `Welcome to Lecture 1 on Limits and Continuity. Today we begin with the intuitive notion of a limit: as x approaches a value c, what does f(x) approach? We write this as lim(x→c) f(x) = L. Informally, this means f(x) can be made arbitrarily close to L by taking x sufficiently close to c, without x ever equaling c.
+
+The formal epsilon-delta definition states: for every ε > 0, there exists δ > 0 such that if 0 < |x − c| < δ, then |f(x) − L| < ε. This definition is the cornerstone of rigorous analysis. It removes all ambiguity from the phrase "arbitrarily close" by quantifying it precisely. We worked through several examples, including lim(x→2) (3x − 1) = 5, verifying the definition by choosing δ = ε/3.
+
+A function f is continuous at c if three conditions hold: f(c) is defined, the limit lim(x→c) f(x) exists, and the two are equal. Discontinuities come in three flavours: removable (a hole in the graph that can be patched), jump (left- and right-hand limits exist but differ), and infinite (the function grows without bound). Understanding continuity is essential before we move to derivatives, since differentiability implies continuity — but not the other way around.`,
     },
   });
 
   const transcript2 = await prisma.transcript.upsert({
-    where:  { id: 'transcript-l2' },
+    where:  { id: 'transcript-lec-03' },
     update: {},
     create: {
-      id:         'transcript-l2',
-      lectureId:  lecture2.id,
+      id:         'transcript-lec-03',
+      lectureId:  lectures['lec-04'].id,
       source:     'ZOOM',
-      rawContent: `Lecture 2 covers the rules of differentiation. The derivative of f(x) is defined as the limit of (f(x+h)-f(x))/h as h→0.
-Power Rule: d/dx[xⁿ] = n·xⁿ⁻¹. Product Rule: d/dx[uv] = u'v + uv'. Quotient Rule: d/dx[u/v] = (u'v - uv')/v².
-The Chain Rule handles composite functions: d/dx[f(g(x))] = f'(g(x))·g'(x).
-Examples worked: derivative of x³, sin(x²), and (x²+1)/(x−3).`,
       status:     'PENDING',
+      rawContent: `In Lecture 3 we push deeper into differentiation. Last time we established the derivative as the limit of the difference quotient: f′(x) = lim(h→0) [f(x+h) − f(x)] / h. Today we examine higher-order derivatives. The second derivative f″(x) measures the rate of change of f′(x) and gives us information about concavity: if f″ > 0, the graph is concave up; if f″ < 0, concave down.
+
+Implicit differentiation lets us find dy/dx when y is defined implicitly by an equation like x² + y² = r². Differentiating both sides with respect to x gives 2x + 2y(dy/dx) = 0, so dy/dx = −x/y. This technique extends to any relation between x and y that is not explicitly solved for y, and it generalises naturally to related rates problems, where two quantities both change with time.
+
+We closed with related rates: a ladder of length 10 m leans against a wall. The base slides away at 0.5 m/s. How fast is the top sliding down when the base is 6 m from the wall? Setting x² + y² = 100 and differentiating implicitly with respect to t gives 2x(dx/dt) + 2y(dy/dt) = 0. At x = 6, y = 8, so dy/dt = −(6 × 0.5)/8 = −0.375 m/s. The negative sign confirms the top is moving downward.`,
     },
   });
 
-  console.log('  ✓ Transcripts: 2 Zoom transcripts');
+  console.log('  ✓ Transcripts: 2 transcripts (Lecture 1, Lecture 3)');
 
-  // One PENDING AIJob per transcript to exercise the worker on next boot
+  // ── 6. AIJobs ────────────────────────────────────────────────────────────────
   await prisma.aIJob.upsert({
-    where:  { id: 'job-l1-summarize' },
+    where:  { id: 'job-lec-01-summarize' },
     update: {},
-    create: {
-      id:           'job-l1-summarize',
-      transcriptId: transcript1.id,
-      jobType:      'SUMMARIZE',
-      status:       'PENDING',
-    },
+    create: { id: 'job-lec-01-summarize', transcriptId: transcript1.id, jobType: 'SUMMARIZE', status: 'PENDING' },
   });
 
   await prisma.aIJob.upsert({
-    where:  { id: 'job-l2-summarize' },
+    where:  { id: 'job-lec-03-summarize' },
     update: {},
-    create: {
-      id:           'job-l2-summarize',
-      transcriptId: transcript2.id,
-      jobType:      'SUMMARIZE',
-      status:       'PENDING',
-    },
+    create: { id: 'job-lec-03-summarize', transcriptId: transcript2.id, jobType: 'SUMMARIZE', status: 'PENDING' },
   });
 
-  console.log('  ✓ AIJobs: 2 PENDING summarization jobs (worker will pick up on next boot)');
+  console.log('  ✓ AIJobs: 2 PENDING summarization jobs');
   console.log('\n✅ Seed complete.');
   console.log('\n📋 Test credentials:');
-  console.log('   Admin:   admin@lms.dev   / admin123!');
-  console.log('   Teacher: teacher@lms.dev / teacher123!');
-  console.log('   Student: artur@lms.dev   / student123!');
-  console.log('   Student: maria@lms.dev   / student123!');
+  console.log('   Admin:    admin@mbzuai.ac.ae    / admin123');
+  console.log('   Teacher:  teacher@mbzuai.ac.ae  / teacher123');
+  console.log('   Students: student1@mbzuai.ac.ae / student123  (student1–5)');
 }
 
 main()

@@ -1,41 +1,55 @@
+'use client'
+
+import { useRef, useState } from 'react'
+import { TopNav } from '@/components/TopNav'
+import { Sidebar, type SidebarHandle } from '@/components/Sidebar'
+import { ScrollableCardRow } from '@/components/ScrollableCardRow'
+import ProtectedRoute from '@/components/ProtectedRoute'
+
 export default function Home() {
+  const [isWidgetEditMode, setIsWidgetEditMode] = useState(false)
+  const sidebarRef = useRef<SidebarHandle>(null)
+
+  const exitEditMode = () => {
+    sidebarRef.current?.exitEditMode()
+    setIsWidgetEditMode(false)
+  }
+
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold tracking-tight">Build it</h2>
-      </div>
+    <ProtectedRoute>
+    <div className="w-full h-screen bg-zinc-100 flex flex-col">
+      {/* ① Top navigation */}
+      <TopNav />
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div className="rounded-xl border border-[var(--sidebar-border)] bg-[var(--sidebar-bg)] p-6 shadow-sm hover:shadow-md transition-all group">
-          <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <h3 className="tracking-tight text-sm font-medium">Active Course</h3>
-          </div>
-          <div className="text-2xl font-bold text-blue-600 group-hover:scale-105 transition-transform origin-left">
-            Calculus & Linear Algebra
-          </div>
-          <p className="text-xs text-gray-500 mt-2">Next up: Node 3 - Integration Basics</p>
-        </div>
+      {/* ② Content row */}
+      <div className="flex flex-row gap-4 p-4 pb-6 pr-6 flex-1 overflow-visible">
+        {/* ③ Sidebar — manages its own DnD context and edit mode */}
+        <Sidebar ref={sidebarRef} onEditModeChange={setIsWidgetEditMode} />
 
-        <div className="rounded-xl border border-[var(--sidebar-border)] bg-[var(--sidebar-bg)] p-6 shadow-sm hover:shadow-md transition-all group">
-          <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <h3 className="tracking-tight text-sm font-medium">Nodes Completed</h3>
-          </div>
-          <div className="text-2xl font-bold group-hover:scale-105 transition-transform origin-left">
-            12 / 48
-          </div>
-          <p className="text-xs text-gray-500 mt-2">25% of curriculum mapped</p>
-        </div>
+        {/* Right — Main area: blurs when widget edit mode is active.
+            Panel's z-index:40 ensures its own clicks are captured above this div. */}
+        <div
+          className="flex-1 flex flex-col gap-4 transition-all duration-300"
+          style={{ filter: isWidgetEditMode ? 'blur(3px)' : 'none' }}
+          onClick={exitEditMode}
+        >
+          {/* Hero card */}
+          <div
+            className="w-full h-[240px] flex-shrink-0 bg-[#E9E5E6] rounded-[20px]"
+            style={{ boxShadow: 'var(--shadow-card)' }}
+          />
 
-        <div className="rounded-xl border border-[var(--sidebar-border)] bg-[var(--sidebar-bg)] p-6 shadow-sm hover:shadow-md transition-all group">
-          <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <h3 className="tracking-tight text-sm font-medium">AI Insights</h3>
-          </div>
-          <div className="text-2xl font-bold text-purple-600 group-hover:scale-105 transition-transform origin-left">
-            2 New
-          </div>
-          <p className="text-xs text-gray-500 mt-2">from your recent transcripts</p>
+          {/* Eight-card horizontally scrollable row */}
+          <ScrollableCardRow />
+
+          {/* Bottom wide card — fills remaining height */}
+          <div
+            className="w-full flex-1 bg-[#E9E5E6] rounded-[20px]"
+            style={{ boxShadow: 'var(--shadow-card)' }}
+          />
         </div>
       </div>
     </div>
-  );
+    </ProtectedRoute>
+  )
 }

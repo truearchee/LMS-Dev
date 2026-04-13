@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(timeout 20 npx tsc --noEmit)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(npx eslint:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(find backend:*)",
+      "Bash(find frontend:*)",
+      "Bash(find frontend/src -name \"*.tsx\" -type f ! -path \"*/node_modules/*\" ! -path \"*/.next/*\" -exec grep -l \"graph\\\\|Graph\" {} \\\\;)",
+      "Bash(npx prisma:*)",
+      "Bash(npm run:*)",
+      "Bash(echo \"PID: $!\")"
+    ]
+  }
+}

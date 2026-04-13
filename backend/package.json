@@ -8,7 +8,8 @@
     "build": "tsc",
     "typecheck": "tsc --noEmit",
     "prisma:generate": "prisma generate",
-    "db:ui": "npx prisma studio"
+    "db:ui": "npx prisma studio",
+    "ingest": "tsx scripts/ingest-lecture.ts"
   },
   "dependencies": {
     "@fastify/cors": "^11.2.0",
