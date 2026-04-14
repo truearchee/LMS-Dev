@@ -75,40 +75,66 @@ export default function CoursePage() {
 
   return (
     <Shell>
-      {/* Content row: left panel + divider + right panel */}
-      <div className="flex flex-row flex-1 overflow-hidden gap-4 p-4">
+      {/* Content area — two columns, no scroll on the page itself */}
+      <div className="flex flex-row flex-1 gap-4 p-4 overflow-hidden">
 
-        {/* ── LEFT PANEL: Timeline ───────────────────────────────────────── */}
+        {/* LEFT — Island card containing carousel */}
         <div
-          className="w-[420px] flex-shrink-0"
-          style={{ height: '100%', overflow: 'hidden' }}
+          className="w-[380px] flex-shrink-0 rounded-[20px] overflow-hidden"
+          style={{
+            background: '#E9E5E6',
+            boxShadow: 'var(--shadow-card)',
+            height: '100%',
+          }}
         >
           <CourseTimeline lectures={course.lectures} />
         </div>
 
-        {/* Divider */}
-        <div className="w-[1px] bg-black/[0.06] flex-shrink-0 self-stretch" />
-
-        {/* ── RIGHT PANEL: Widget blocks (unchanged placeholders) ─────────── */}
+        {/* RIGHT — Five blocks */}
         <div
-          className="flex-1 flex flex-col gap-4 overflow-y-auto overflow-x-hidden scrollbar-none"
-          style={{ height: '100%' }}
+          className="flex-1 flex flex-col gap-4 overflow-y-auto overflow-x-hidden"
+          style={{ scrollbarWidth: 'none' }}
         >
-          {[
-            { id: 'recap',       label: 'AI Recap',        height: 'h-[200px]' },
-            { id: 'materials',   label: 'Course Materials', height: 'h-[240px]' },
-            { id: 'assignments', label: 'Assignments',      height: 'h-[200px]' },
-            { id: 'notes',       label: 'My Notes',         height: 'h-[180px]' },
-            { id: 'progress',    label: 'Progress',         height: 'h-[160px]' },
-          ].map((block) => (
-            <div
-              key={block.id}
-              className={`w-full ${block.height} flex-shrink-0 bg-[#E9E5E6] rounded-[20px] flex items-end p-4`}
-              style={{ boxShadow: 'var(--shadow-card)' }}
-            >
-              <span className="text-sm text-black/30">{block.label}</span>
-            </div>
-          ))}
+          {/* Block 1 — Large top (AI Recap) */}
+          <div
+            className="w-full flex-shrink-0 rounded-[20px] flex items-end p-4"
+            style={{
+              height: 220,
+              background: '#E9E5E6',
+              boxShadow: 'var(--shadow-card)',
+            }}
+          >
+            <span className="text-sm text-black/30">AI Recap</span>
+          </div>
+
+          {/* Blocks 2–4 — Three equal medium blocks in a row */}
+          <div className="flex flex-row gap-4 flex-shrink-0">
+            {(['Course Materials', 'Assignments', 'My Notes'] as const).map((label) => (
+              <div
+                key={label}
+                className="flex-1 rounded-[20px] flex items-end p-4"
+                style={{
+                  height: 200,
+                  background: '#E9E5E6',
+                  boxShadow: 'var(--shadow-card)',
+                }}
+              >
+                <span className="text-sm text-black/30">{label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Block 5 — Large bottom (Progress), fills remaining height */}
+          <div
+            className="w-full flex-1 rounded-[20px] flex items-end p-4"
+            style={{
+              minHeight: 160,
+              background: '#E9E5E6',
+              boxShadow: 'var(--shadow-card)',
+            }}
+          >
+            <span className="text-sm text-black/30">Progress</span>
+          </div>
         </div>
 
       </div>
