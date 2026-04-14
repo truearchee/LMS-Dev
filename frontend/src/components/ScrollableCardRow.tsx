@@ -124,7 +124,7 @@ export function ScrollableCardRow() {
         {Array.from({ length: 8 }, (_, i) => (
           <div
             key={i}
-            className="flex-shrink-0 w-[calc(25%-12px)] h-[256px] bg-[#E9E5E6] rounded-[20px] scroll-snap-start"
+            className="flex-shrink-0 w-[calc(25%-12px)] h-[200px] bg-[#E9E5E6] rounded-[20px] scroll-snap-start"
             style={{ boxShadow: 'var(--shadow-card)' }}
           />
         ))}

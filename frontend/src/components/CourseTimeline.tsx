@@ -10,13 +10,14 @@ const HEADER_HEIGHT = 44   // px — week header height
 // ── Types ────────────────────────────────────────────────────────────────────
 interface ScheduleItem {
   id: string
+  lectureDbId: string | null   // real DB cuid — null for generated items without a DB match
   date: Date
-  dayLabel: string         // e.g. "Wed, Apr 1"
+  dayLabel: string             // e.g. "Wed, Apr 1"
   contentType: 'LECTURE' | 'LAB' | 'QUIZ'
-  sequentialLabel: string  // e.g. "Lecture 3" | "Lab 2" | "Quiz 1: Weeks 1–2"
-  title: string | null     // from DB if available, null otherwise
+  sequentialLabel: string      // e.g. "Lecture 3" | "Lab 2" | "Quiz 1: Weeks 1–2"
+  title: string | null         // from DB if available, null otherwise
   weekNumber: number
-  weekRange: string        // e.g. "March 30 — April 3"
+  weekRange: string            // e.g. "March 30 — April 3"
 }
 
 type TimelineItem =
@@ -92,6 +93,7 @@ function generateSchedule(lectures: Lecture[]): ScheduleItem[] {
     const mondayLecture = findLectureByNumber(lectures, lectureCount)
     items.push({
       id: `lecture-${lectureCount}`,
+      lectureDbId: mondayLecture?.id ?? null,
       date: monday,
       dayLabel: formatDayDate(monday),
       contentType: 'LECTURE',
@@ -107,6 +109,7 @@ function generateSchedule(lectures: Lecture[]): ScheduleItem[] {
       const wednesdayLecture = findLectureByNumber(lectures, lectureCount)
       items.push({
         id: `lecture-${lectureCount}`,
+        lectureDbId: wednesdayLecture?.id ?? null,
         date: wednesday,
         dayLabel: formatDayDate(wednesday),
         contentType: 'LECTURE',
@@ -119,13 +122,18 @@ function generateSchedule(lectures: Lecture[]): ScheduleItem[] {
       // Wednesday — Quiz on quiz weeks
       quizCount++
       const prevWeek = week - 1
+      // Find the QUIZ lecture in the DB by matching contentType and orderIndex sequence
+      const quizLecture = lectures
+        .filter(l => l.contentType === 'QUIZ')
+        .sort((a, b) => a.orderIndex - b.orderIndex)[quizCount - 1] ?? null
       items.push({
         id: `quiz-${quizCount}`,
+        lectureDbId: quizLecture?.id ?? null,
         date: wednesday,
         dayLabel: formatDayDate(wednesday),
         contentType: 'QUIZ',
         sequentialLabel: `Quiz ${quizCount}: Weeks ${prevWeek}–${week}`,
-        title: null,
+        title: quizLecture?.title ?? null,
         weekNumber: week,
         weekRange,
       })
@@ -136,6 +144,7 @@ function generateSchedule(lectures: Lecture[]): ScheduleItem[] {
     const lab = findLabByNumber(lectures, labCount)
     items.push({
       id: `lab-${labCount}`,
+      lectureDbId: lab?.id ?? null,
       date: thursday,
       dayLabel: formatDayDate(thursday),
       contentType: 'LAB',
@@ -224,9 +233,11 @@ function getHeaderStyles(
 // ── Component ────────────────────────────────────────────────────────────────
 interface CourseTimelineProps {
   lectures: Lecture[]
+  selectedLectureId?: string | null
+  onLectureSelect?: (lectureId: string) => void
 }
 
-export function CourseTimeline({ lectures }: CourseTimelineProps) {
+export function CourseTimeline({ lectures, selectedLectureId, onLectureSelect }: CourseTimelineProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const itemRefs     = useRef<Map<string, HTMLDivElement>>(new Map())
   const scrollTimer  = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -405,12 +416,20 @@ export function CourseTimeline({ lectures }: CourseTimelineProps) {
               scheduleItem.contentType === 'LAB'  ? 'rgba(0,0,0,0.30)' :
                                                     'rgba(0,0,0,0.40)'
 
+            // Is this the selected lecture?
+            const isSelected = scheduleItem.lectureDbId !== null && scheduleItem.lectureDbId === selectedLectureId
+
             return (
               <div
                 key={item.id}
                 ref={(el) => {
                   if (el) itemRefs.current.set(item.id, el)
                   else itemRefs.current.delete(item.id)
+                }}
+                onClick={() => {
+                  if (scheduleItem.lectureDbId && onLectureSelect) {
+                    onLectureSelect(scheduleItem.lectureDbId)
+                  }
                 }}
                 style={{
                   height: ITEM_HEIGHT,
@@ -422,8 +441,11 @@ export function CourseTimeline({ lectures }: CourseTimelineProps) {
                   paddingLeft: 20,
                   paddingRight: 16,
                   borderRadius: 12,
-                  cursor: 'pointer',
+                  cursor: scheduleItem.lectureDbId ? 'pointer' : 'default',
                   gap: 3,
+                  outline: isSelected ? '2px solid rgba(0,0,0,0.18)' : 'none',
+                  outlineOffset: '-2px',
+                  background: isSelected ? 'rgba(0,0,0,0.06)' : 'transparent',
                   ...styles.container,
                 } as React.CSSProperties}
               >

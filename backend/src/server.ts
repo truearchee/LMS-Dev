@@ -15,7 +15,7 @@ import { transcriptRoutes } from './routes/transcripts.js';
 import { makeAiRoutes }     from './routes/ai.js';
 import { uploadRoutes }     from './routes/upload.js';
 import { LocalStorageService, StorageService } from './services/storage/StorageService.js';
-import { AIProvider, MockAIProvider, OpenAIProvider, AnthropicProvider } from './services/ai/AIService.js';
+import { AIProvider, MockAIProvider, OpenAIProvider, AnthropicProvider, K2Provider } from './services/ai/AIService.js';
 import { JobWorker } from './services/ai/JobWorker.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -26,11 +26,32 @@ const server = Fastify({ logger: true });
 const storage: StorageService = new LocalStorageService(); // swap via STORAGE_PROVIDER env
 
 // ─── AI Provider ──────────────────────────────────────────────────────────────
-const ai: AIProvider = env.AI_API_KEY
-  ? env.AI_PROVIDER === 'anthropic'
-    ? new AnthropicProvider(env.AI_API_KEY)
-    : new OpenAIProvider(env.AI_API_KEY)
-  : new MockAIProvider();
+function createAIProvider(): AIProvider {
+  const provider = env.AI_PROVIDER;
+
+  console.log(`[AI] Provider: ${provider} | Model: ${env.AI_MODEL ?? 'default'}`);
+
+  switch (provider) {
+    case 'k2':
+      if (!env.AI_API_KEY) throw new Error('AI_API_KEY is required for k2 provider');
+      return new K2Provider(env.AI_API_KEY, env.AI_MODEL, env.AI_BASE_URL);
+
+    case 'openai':
+      if (!env.AI_API_KEY) throw new Error('AI_API_KEY is required for openai provider');
+      return new OpenAIProvider(env.AI_API_KEY);
+
+    case 'anthropic':
+      if (!env.AI_API_KEY) throw new Error('AI_API_KEY is required for anthropic provider');
+      return new AnthropicProvider(env.AI_API_KEY);
+
+    case 'mock':
+    default:
+      console.log('[AI] Using MockAIProvider — no real API calls will be made');
+      return new MockAIProvider();
+  }
+}
+
+const ai: AIProvider = createAIProvider();
 
 // ─── Plugins ─────────────────────────────────────────────────────────────────
 await server.register(cors, {

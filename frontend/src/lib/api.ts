@@ -130,9 +130,7 @@ export async function api<T>(
   throw new ApiError(res.status, errBody.error ?? errBody.message ?? 'Request failed')
 }
 
-// ─── Course API functions ─────────────────────────────────────────────────────
-// Import types inline to avoid circular-dependency issues with bundlers.
-import type { Course, CourseDetail } from '@/types/course'
+import type { Course, CourseDetail, LectureDetail } from '@/types/course'
 
 // Fetch all courses the current user has access to.
 // Backend returns { courses: Course[] } — unwrapped here.
@@ -146,4 +144,11 @@ export async function getCourses(): Promise<Course[]> {
 export async function getCourse(id: string): Promise<CourseDetail> {
   const data = await api<{ course: CourseDetail }>(`/courses/${id}`)
   return data.course
+}
+
+// Fetch a single lecture with its files, transcripts, and AI summaries.
+// Backend returns { lecture: LectureDetail } — unwrapped here.
+export async function getLecture(id: string): Promise<LectureDetail> {
+  const data = await api<{ lecture: LectureDetail }>(`/lectures/${id}`)
+  return data.lecture
 }

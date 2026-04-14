@@ -18,9 +18,17 @@ const envSchema = z.object({
   STORAGE_KEY_ID:   z.string().optional(),
   STORAGE_SECRET:   z.string().optional(),
 
-  // AI — optional now, but validated when present
-  AI_PROVIDER:  z.enum(['openai', 'anthropic']).optional(),
+  // AI — k2 is the primary provider for this project (K2 Think V2)
+  AI_PROVIDER:  z.enum(['mock', 'openai', 'anthropic', 'k2']).default('mock'),
   AI_API_KEY:   z.string().optional(),
-})
+  AI_MODEL:     z.string().optional(),
+  AI_BASE_URL:  z.string().url().optional(),
+}).refine(
+  (data) => data.AI_PROVIDER === 'mock' || !!data.AI_API_KEY,
+  {
+    message: 'AI_API_KEY is required when AI_PROVIDER is not mock',
+    path: ['AI_API_KEY'],
+  }
+)
 
 export const env = envSchema.parse(process.env)

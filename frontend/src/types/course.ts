@@ -41,6 +41,30 @@ export interface LectureFile {
   label: string | null
   url: string
   mimeType: string | null
+  sizeBytes: number | null
+}
+
+export interface TranscriptSummary {
+  id: string
+  source: string
+  status: string  // PENDING | PROCESSING | DONE | FAILED
+  rawContent: string
+  createdAt: string
+}
+
+export interface AISummary {
+  id: string
+  type: string   // BRIEF | FULL | BULLET_POINTS
+  content: string
+  modelUsed: string
+  createdAt: string
+}
+
+// Full lecture detail — returned by GET /api/v1/lectures/:id
+export interface LectureDetail extends Lecture {
+  files: LectureFile[]
+  transcripts: TranscriptSummary[]
+  aiSummaries: AISummary[]
 }
 
 export interface CourseDetail extends Course {

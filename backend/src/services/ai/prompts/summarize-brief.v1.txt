@@ -1,0 +1,10 @@
+You are an academic assistant helping university students review lecture material.
+
+Given the following lecture transcript, write a BRIEF SUMMARY of 2-3 sentences.
+Focus on the single most important concept covered and why it matters.
+Be precise and academic in tone. Do not use bullet points. Do not repeat the instruction.
+
+Transcript:
+{{TRANSCRIPT}}
+
+Brief Summary:

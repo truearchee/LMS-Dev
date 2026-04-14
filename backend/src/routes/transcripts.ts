@@ -53,10 +53,18 @@ export const transcriptRoutes: FastifyPluginAsync = async (fastify: FastifyInsta
       const transcript = await prisma.transcript.findUnique({ where: { id } });
       if (!transcript) return reply.status(404).send({ error: 'Transcript not found.' });
 
+      // Accept optional summaryType from the request body
+      const { summaryType = 'BRIEF' } = (request.body as { summaryType?: string } | null) ?? {};
+
+      // Validate summaryType against allowed values
+      const validTypes = ['BRIEF', 'FULL', 'BULLET_POINTS'];
+      const type = validTypes.includes(summaryType) ? summaryType : 'BRIEF';
+
       const job = await prisma.aIJob.create({
         data: {
           transcriptId: transcript.id,
           jobType: 'SUMMARIZE',
+          summaryType: type,
           status: 'PENDING',
         },
       });
@@ -69,6 +77,7 @@ export const transcriptRoutes: FastifyPluginAsync = async (fastify: FastifyInsta
       return reply.status(202).send({
         message: 'Processing enqueued.',
         jobId: job.id,
+        summaryType: type,
         pollUrl: `/api/v1/ai/jobs/${job.id}`,
       });
     },

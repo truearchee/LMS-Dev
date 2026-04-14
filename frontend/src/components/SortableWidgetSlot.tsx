@@ -65,7 +65,7 @@ export function SortableWidgetSlot({
             onRemove(widget.instanceId)
           }}
           onPointerDown={(e) => e.stopPropagation()}
-          className="absolute top-[-6px] left-[-6px] z-20 w-[18px] h-[18px] rounded-full flex items-center justify-center text-[8px] font-bold leading-none cursor-pointer transition-colors duration-150 hover:scale-110"
+          className="absolute top-[-4px] left-[-4px] z-20 w-[16px] h-[16px] rounded-full flex items-center justify-center text-[7px] font-bold leading-none cursor-pointer transition-colors duration-150 hover:scale-110"
           style={{
             background: '#3C3C3C',
             color: '#FFFFFF',

@@ -8,6 +8,16 @@ interface AddWidgetPanelProps {
   isOpen: boolean
 }
 
+// Height of the panel when open.
+// Used only by the panel itself — page.tsx no longer needs this value
+// because the panel is now a pure overlay (no content-push).
+export const WIDGET_PANEL_HEIGHT = 236 // px
+
+// The sidebar is w-[320px] and the content row has gap-4 (16px) + p-4 (16px left padding).
+// So the right column starts at 320 + 16 (gap) + 16 (padding) = 352px from the left edge.
+// We use 336px (320 sidebar + 16 gap) because the row padding is shared.
+const SIDEBAR_OFFSET = 336 // px — panel left edge begins here, keeping sidebar clear
+
 const tileSize: Record<WidgetSize, string> = {
   small:  'w-[120px] h-[120px]',
   medium: 'w-[220px] h-[120px]',
@@ -44,17 +54,22 @@ function DraggableTile({ tile }: { tile: WidgetTile }) {
 export function AddWidgetPanel({ isOpen }: AddWidgetPanelProps) {
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-40"
       style={{
+        // Fixed to the viewport bottom, but offset from the left so the
+        // sidebar (320px wide + 16px gap) is never covered.
+        position: 'fixed',
+        bottom: 0,
+        left: SIDEBAR_OFFSET,
+        right: 0,
+        zIndex: 40,
+        height: WIDGET_PANEL_HEIGHT,
         background: '#E9E5E6',
         borderRadius: '24px 24px 0 0',
         boxShadow: '0px -4px 24px rgba(0,0,0,0.12), 0px 0px 0px 1px rgba(0,0,0,0.08)',
-        maxHeight: '320px',
         transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
-        opacity: isOpen ? 1 : 0,
         transition: isOpen
-          ? 'transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.2s ease'
-          : 'transform 0.25s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.15s ease',
+          ? 'transform 0.35s cubic-bezier(0.32, 0.72, 0, 1)'
+          : 'transform 0.25s cubic-bezier(0.32, 0.72, 0, 1)',
         pointerEvents: isOpen ? 'auto' : 'none',
       }}
     >

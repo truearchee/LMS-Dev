@@ -158,6 +158,8 @@ model AISummary {
   modelUsed     String      // e.g. "gpt-4o", "claude-3-5-sonnet" — for auditability
   promptVersion String?     // track which prompt template generated this
   createdAt     DateTime    @default(now())
+
+  @@unique([lectureId, transcriptId, type])
 }
 
 // AIJob tracks async processing state.
@@ -167,6 +169,7 @@ model AIJob {
   transcriptId String
   transcript   Transcript       @relation(fields: [transcriptId], references: [id])
   jobType      String           // "SUMMARIZE" | "EMBED" | "QUIZ_GENERATE"
+  summaryType  String           @default("BRIEF")  // BRIEF | FULL | BULLET_POINTS
   status       String           @default("PENDING") // ProcessingStatus: PENDING | PROCESSING | DONE | FAILED
   errorMessage String?          // populated on FAILED status
   startedAt    DateTime?

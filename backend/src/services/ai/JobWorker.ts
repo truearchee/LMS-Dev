@@ -10,7 +10,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { PrismaClient } from '@prisma/client';
-import { AIProvider, SummarizeOptions } from './AIService.js';
+import { AIProvider, SummarizeOptions, getPromptVersion, prepareTranscriptText } from './AIService.js';
+import { env } from '../../lib/env.js';
 
 const POLL_INTERVAL_MS = 10_000; // 10 seconds
 
@@ -62,6 +63,7 @@ export class JobWorker {
   private async processJob(job: {
     id: string;
     jobType: string;
+    summaryType: string;
     transcript: {
       id: string;
       lectureId: string;
@@ -69,7 +71,7 @@ export class JobWorker {
       processedContent: string | null;
     };
   }): Promise<void> {
-    console.log(`[JobWorker] Processing job ${job.id} (${job.jobType})`);
+    console.log(`[JobWorker] Processing job ${job.id} (${job.jobType}, summaryType: ${job.summaryType})`);
 
     // PENDING → PROCESSING
     await this.prisma.aIJob.update({
@@ -78,12 +80,22 @@ export class JobWorker {
     });
 
     try {
-      const content = job.transcript.processedContent ?? job.transcript.rawContent;
+      // Use processedContent if available and truncate if necessary
+      const content = prepareTranscriptText(job.transcript);
 
-      if (job.jobType === 'SUMMARIZE') {
-        await this.handleSummarize(job.id, job.transcript.id, job.transcript.lectureId, content);
-      } else {
-        throw new Error(`Unknown jobType: ${job.jobType}`);
+      switch (job.jobType) {
+        case 'SUMMARIZE':
+          await this.handleSummarize(job.id, job.transcript.id, job.transcript.lectureId, content, job.summaryType);
+          break;
+
+        case 'EMBED':
+          throw new Error('EMBED job type not yet implemented — skipping');
+
+        case 'QUIZ_GENERATE':
+          throw new Error('QUIZ_GENERATE job type not yet implemented — skipping');
+
+        default:
+          throw new Error(`Unknown jobType: ${job.jobType}`);
       }
 
       // PROCESSING → DONE
@@ -94,7 +106,7 @@ export class JobWorker {
 
       console.log(`[JobWorker] Job ${job.id} completed.`);
     } catch (err: any) {
-      // PROCESSING → FAILED
+      // PROCESSING → FAILED — worker continues to next job
       await this.prisma.aIJob.update({
         where: { id: job.id },
         data: {
@@ -114,18 +126,35 @@ export class JobWorker {
     transcriptId: string,
     lectureId: string,
     content: string,
+    summaryType: string,
   ): Promise<void> {
-    const options: SummarizeOptions = { type: 'BRIEF', promptVersion: 'v1' };
+    const type = (summaryType as 'BRIEF' | 'FULL' | 'BULLET_POINTS') ?? 'BRIEF';
+    const promptVersion = getPromptVersion(type);
+    const options: SummarizeOptions = { type, promptVersion };
     const summary = await this.ai.summarize(content, options);
+    const modelUsed = env.AI_MODEL ?? 'MBZUAI-IFM/K2-Think-v2';
 
-    await this.prisma.aISummary.create({
-      data: {
+    // Upsert — re-triggering the same type updates the existing record (no duplicates)
+    await this.prisma.aISummary.upsert({
+      where: {
+        lectureId_transcriptId_type: {
+          lectureId,
+          transcriptId,
+          type,
+        },
+      },
+      create: {
         lectureId,
         transcriptId,
-        type: options.type,
+        type,
         content: summary,
-        modelUsed: 'mock', // will be replaced by actual model name when real provider is active
-        promptVersion: options.promptVersion,
+        modelUsed,
+        promptVersion,
+      },
+      update: {
+        content: summary,
+        modelUsed,
+        promptVersion,
       },
     });
   }
