@@ -19,7 +19,12 @@ export function makeLectureRoutes(storage: StorageService) {
         include: {
           files:       { orderBy: { createdAt: 'asc' } },
           transcripts: { select: { id: true, source: true, status: true, createdAt: true } },
-          aiSummaries: { orderBy: { createdAt: 'desc' }, take: 3 },
+          aiSummaries: {
+            orderBy: { createdAt: 'desc' },
+            select: {
+              id: true, type: true, content: true, modelUsed: true, promptVersion: true, createdAt: true,
+            },
+          },
         },
       });
 
@@ -60,8 +65,15 @@ export function makeLectureRoutes(storage: StorageService) {
         const lecture = await prisma.lecture.findUnique({ where: { id, deletedAt: null } });
         if (!lecture) return reply.status(404).send({ error: 'Lecture not found.' });
 
-        const file = await prisma.lectureFile.create({
-          data: { lectureId: id, url, type, label, mimeType, sizeBytes },
+        const file = await prisma.lectureFile.upsert({
+          where: {
+            lectureId_type: {
+              lectureId: id,
+              type,
+            },
+          },
+          create: { lectureId: id, url, type, label, mimeType, sizeBytes },
+          update: { url, label, mimeType, sizeBytes },
         });
 
         return reply.status(201).send({ file });
@@ -95,11 +107,23 @@ export function makeLectureRoutes(storage: StorageService) {
           : data.mimetype.startsWith('video/') ? 'RECORDING'
           : 'OTHER';
 
-        const file = await prisma.lectureFile.create({
-          data: {
+        const file = await prisma.lectureFile.upsert({
+          where: {
+            lectureId_type: {
+              lectureId: id,
+              type,
+            },
+          },
+          create: {
             lectureId: id,
             url,
             type,
+            label:     data.filename,
+            mimeType:  data.mimetype,
+            sizeBytes: buffer.byteLength,
+          },
+          update: {
+            url,
             label:     data.filename,
             mimeType:  data.mimetype,
             sizeBytes: buffer.byteLength,
@@ -108,6 +132,49 @@ export function makeLectureRoutes(storage: StorageService) {
 
         return reply.status(201).send({ file });
       },
+    );
+    // ── PATCH /api/v1/lectures/:id/note ─────────────────────────────────────
+    // Access: TEACHER/ADMIN
+    fastify.patch<{
+      Params: { id: string }
+      Body: { teacherNote: string }
+    }>(
+      '/:id/note',
+      { preHandler: [requireAuth, requireRole('TEACHER', 'ADMIN')] },
+      async (request, reply) => {
+        const { id } = request.params;
+        const { teacherNote } = request.body;
+
+        const lecture = await prisma.lecture.update({
+          where: { id },
+          data: { teacherNote },
+        });
+
+        return reply.send({ message: 'Note updated successfully', lecture });
+      }
+    );
+
+    // ── DELETE /api/v1/lectures/:id/files/:fileId ───────────────────────────
+    // Access: TEACHER/ADMIN
+    fastify.delete<{
+      Params: { id: string; fileId: string }
+    }>(
+      '/:id/files/:fileId',
+      { preHandler: [requireAuth, requireRole('TEACHER', 'ADMIN')] },
+      async (request, reply) => {
+        const { id: lectureId, fileId } = request.params;
+
+        const file = await prisma.lectureFile.findFirst({
+          where: { id: fileId, lectureId },
+        });
+
+        if (!file) {
+          return reply.status(404).send({ error: { message: 'File not found' } });
+        }
+
+        await prisma.lectureFile.delete({ where: { id: fileId } });
+        return reply.status(204).send();
+      }
     );
   };
 }

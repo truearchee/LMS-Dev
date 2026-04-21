@@ -76,6 +76,14 @@ export async function api<T>(
     if (token) headers['Authorization'] = `Bearer ${token}`
   }
 
+  // Set JSON content type when body is a string (i.e. JSON.stringify output)
+  // but NOT for FormData (multipart — browser sets that automatically)
+  if (fetchOptions.body && typeof fetchOptions.body === 'string') {
+    if (!headers['Content-Type']) {
+      headers['Content-Type'] = 'application/json'
+    }
+  }
+
   const res = await fetch(`${API_URL}${path}`, { ...fetchOptions, headers })
 
   // ── Happy path ──────────────────────────────────────────────────────────────
@@ -151,4 +159,105 @@ export async function getCourse(id: string): Promise<CourseDetail> {
 export async function getLecture(id: string): Promise<LectureDetail> {
   const data = await api<{ lecture: LectureDetail }>(`/lectures/${id}`)
   return data.lecture
+}
+
+export async function uploadFile(file: File): Promise<string> {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1'
+  const uploadUrl = baseUrl.replace('/api/v1', '') + '/api/upload'
+
+  const token = getAccessToken()
+  const formData = new FormData()
+  formData.append('file', file)
+
+  const response = await fetch(uploadUrl, {
+    method: 'POST',
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+    body: formData,
+  })
+
+  if (!response.ok) {
+    const body = await response.text().catch(() => 'unknown error')
+    throw new Error(`Upload failed (${response.status}): ${body}`)
+  }
+
+  const data = await response.json() as Record<string, unknown>
+  const url = data.url ?? data.fileUrl ?? data.path
+  if (typeof url !== 'string' || !url) {
+    throw new Error(`Upload response missing URL. Got: ${JSON.stringify(data)}`)
+  }
+  return url
+}
+
+export async function linkFileToLecture(
+  lectureId: string,
+  type: string,
+  url: string,
+  label: string,
+  mimeType?: string
+): Promise<void> {
+  await api<unknown>(`/lectures/${lectureId}/files/register`, {
+    method: 'POST',
+    body: JSON.stringify({
+      type,
+      url,
+      label,
+      ...(mimeType ? { mimeType } : {}),
+    }),
+  })
+}
+
+export async function submitTranscript(
+  lectureId: string,
+  rawContent: string,
+  source: 'ZOOM' | 'MANUAL' | 'UPLOAD'
+): Promise<string> {
+  const data = await api<{ transcript: { id: string } }>('/transcripts', {
+    method: 'POST',
+    body: JSON.stringify({ lectureId, rawContent, source }),
+  })
+  return data.transcript.id
+}
+
+export async function generateSummary(
+  transcriptId: string,
+  summaryType: 'BRIEF' | 'FULL' | 'BULLET_POINTS'
+): Promise<string> {
+  const data = await api<{ jobId: string }>(`/transcripts/${transcriptId}/process`, {
+    method: 'POST',
+    body: JSON.stringify({ summaryType }),
+  })
+  return data.jobId
+}
+
+export async function getJobStatus(jobId: string): Promise<{
+  status: 'PENDING' | 'PROCESSING' | 'DONE' | 'FAILED'
+  errorMessage?: string | null
+}> {
+  const data = await api<{ status: string; errorMessage?: string | null }>(`/ai/jobs/${jobId}`)
+  return {
+    status: data.status as any,
+    errorMessage: data.errorMessage ?? null,
+  }
+}
+
+export async function updateTeacherNote(lectureId: string, note: string): Promise<void> {
+  await api(`/lectures/${lectureId}/note`, {
+    method: 'PATCH',
+    body: JSON.stringify({ teacherNote: note }),
+  })
+}
+
+export async function deleteLectureFile(
+  lectureId: string,
+  fileId: string
+): Promise<void> {
+  await api<void>(`/lectures/${lectureId}/files/${fileId}`, {
+    method: 'DELETE',
+  })
+}
+
+export async function deleteTranscript(transcriptId: string): Promise<void> {
+  await api<void>(`/transcripts/${transcriptId}`, {
+    method: 'DELETE',
+  })
 }

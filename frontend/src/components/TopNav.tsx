@@ -10,10 +10,12 @@ interface TopNavProps {
 
 export function TopNav({ courseTitle }: TopNavProps) {
   const pathname = usePathname()
-  const { logout } = useAuth()
+  const { user, logout } = useAuth()
+  const isTeacher = user?.role === 'TEACHER' || user?.role === 'ADMIN'
   const isHome = pathname === '/'
   const isDashboard = pathname === '/dashboard'
   const isMyMap = pathname === '/my-map'
+  const isUploadPage = pathname === '/teacher/upload'
   const isCoursePage = pathname.startsWith('/courses/')
 
   return (
@@ -58,6 +60,13 @@ export function TopNav({ courseTitle }: TopNavProps) {
                 My Map
               </div>
             </Link>
+            {isTeacher && (
+              <Link href="/teacher/upload">
+                <div className={`px-4 py-2 rounded-md text-2xl ${isUploadPage ? 'bg-zinc-300 text-black' : 'text-black/40'}`}>
+                  Upload
+                </div>
+              </Link>
+            )}
           </>
         )}
       </div>

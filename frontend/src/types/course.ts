@@ -37,33 +37,35 @@ export interface Lecture {
 // Defined for future use when endpoint includes lecture files.
 export interface LectureFile {
   id: string
-  type: string
+  type: string // "SLIDES" | "RECORDING" | "REFERENCE" | "OTHER"
   label: string | null
   url: string
   mimeType: string | null
-  sizeBytes: number | null
-}
-
-export interface TranscriptSummary {
-  id: string
-  source: string
-  status: string  // PENDING | PROCESSING | DONE | FAILED
-  rawContent: string
+  sizeBytes?: number | null
   createdAt: string
 }
 
 export interface AISummary {
   id: string
-  type: string   // BRIEF | FULL | BULLET_POINTS
+  type: string // "BRIEF" | "FULL" | "BULLET_POINTS"
   content: string
   modelUsed: string
+  promptVersion: string | null
   createdAt: string
 }
 
-// Full lecture detail — returned by GET /api/v1/lectures/:id
+export interface LectureTranscript {
+  id: string
+  source: string
+  rawContent: string
+  processedContent: string | null
+  status: string
+  createdAt: string
+}
+
 export interface LectureDetail extends Lecture {
   files: LectureFile[]
-  transcripts: TranscriptSummary[]
+  transcripts: LectureTranscript[]
   aiSummaries: AISummary[]
 }
 

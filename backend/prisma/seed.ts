@@ -67,29 +67,58 @@ async function main() {
   console.log(`  ✓ Enrolled: ${students.length} students`);
 
   // ── 4. Lectures ──────────────────────────────────────────────────────────────
-  // MWF schedule starting 2026-01-05
-  // Week 1: Jan 5 (Mon), Jan 7 (Wed), Jan 9 (Fri)
-  // Week 2: Jan 12 (Mon), Jan 14 (Wed), Jan 16 (Fri)
-  // Week 3: Jan 19 (Mon), Jan 21 (Wed), Jan 23 (Fri)
-  // Week 4: Jan 26 (Mon), Jan 28 (Wed), Jan 30 (Fri)
-  const lectureData = [
-    // Week 1
-    { id: 'lec-01', moduleNumber: 1, orderIndex: 1,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-05T09:00:00Z'), title: 'Lecture 1: Limits and Continuity',                  description: 'Introduction to the epsilon-delta definition of limits. Covers one-sided limits and continuity.' },
-    { id: 'lec-02', moduleNumber: 1, orderIndex: 2,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-07T09:00:00Z'), title: 'Lecture 2: Derivatives and Differentiation Rules',  description: 'Power rule, product rule, quotient rule, and chain rule with worked examples.' },
-    { id: 'lec-03', moduleNumber: 1, orderIndex: 3,  contentType: 'LAB',     scheduledAt: new Date('2026-01-09T09:00:00Z'), title: 'Lab 1: Problem Set 1',                              description: 'Practice problems on limits and derivatives.' },
-    // Week 2
-    { id: 'lec-04', moduleNumber: 2, orderIndex: 4,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-12T09:00:00Z'), title: 'Lecture 3: Derivatives — Part I',                   description: 'Higher-order derivatives, implicit differentiation, and related rates.' },
-    { id: 'lec-05', moduleNumber: 2, orderIndex: 5,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-14T09:00:00Z'), title: 'Lecture 4: Derivatives — Part II',                  description: 'Mean value theorem, L\'Hôpital\'s rule, and optimization.' },
-    { id: 'lec-06', moduleNumber: 2, orderIndex: 6,  contentType: 'QUIZ',    scheduledAt: new Date('2026-01-16T09:00:00Z'), title: 'Quiz 1: Midterm Quiz — Weeks 1–2',                  description: 'Quiz covering limits, continuity, and differentiation.' },
-    // Week 3
-    { id: 'lec-07', moduleNumber: 3, orderIndex: 7,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-19T09:00:00Z'), title: 'Lecture 5: Chain Rule and Implicit Differentiation', description: 'Composite functions, the chain rule, and implicit differentiation techniques.' },
-    { id: 'lec-08', moduleNumber: 3, orderIndex: 8,  contentType: 'LECTURE', scheduledAt: new Date('2026-01-21T09:00:00Z'), title: 'Lecture 6: Applications of Derivatives',             description: 'Curve sketching, concavity, inflection points, and optimization problems.' },
-    { id: 'lec-09', moduleNumber: 3, orderIndex: 9,  contentType: 'LAB',     scheduledAt: new Date('2026-01-23T09:00:00Z'), title: 'Lab 2: Problem Set 2',                              description: 'Practice problems on the chain rule and applications.' },
-    // Week 4
-    { id: 'lec-10', moduleNumber: 4, orderIndex: 10, contentType: 'LECTURE', scheduledAt: new Date('2026-01-26T09:00:00Z'), title: 'Lecture 7: Introduction to Integration',             description: 'Antiderivatives, indefinite integrals, and basic integration rules.' },
-    { id: 'lec-11', moduleNumber: 4, orderIndex: 11, contentType: 'LECTURE', scheduledAt: new Date('2026-01-28T09:00:00Z'), title: 'Lecture 8: The Fundamental Theorem of Calculus',     description: 'The two parts of the Fundamental Theorem and their applications.' },
-    { id: 'lec-12', moduleNumber: 4, orderIndex: 12, contentType: 'QUIZ',    scheduledAt: new Date('2026-01-30T09:00:00Z'), title: 'Quiz 2: Quiz — Weeks 3–4',                          description: 'Quiz covering integration and the Fundamental Theorem of Calculus.' },
-  ];
+  // Spring 2026 Schedule: 14 weeks starting Jan 12 (Mon), 2026.
+  // Weekly pattern: Mon (Lecture), Tue (Lecture), Wed (Lab).
+  const SEMESTER_START = new Date('2026-01-12T09:00:00Z');
+  
+  const lectureData: any[] = [];
+  let orderCursor = 1;
+  let lectureCount = 1;
+  let labCount = 1;
+
+  for (let week = 1; week <= 14; week++) {
+    // Mon - Lecture
+    const dMon = new Date(SEMESTER_START);
+    dMon.setDate(dMon.getDate() + (week - 1) * 7);
+    lectureData.push({
+      id: `lec-${orderCursor.toString().padStart(2, '0')}`,
+      moduleNumber: week,
+      orderIndex: orderCursor++,
+      contentType: 'LECTURE',
+      scheduledAt: dMon,
+      title: `Lecture ${lectureCount}: Topic for Week ${week}`,
+      description: `Description for lecture ${lectureCount}.`,
+    });
+    lectureCount++;
+
+    // Tue - Lecture
+    const dTue = new Date(dMon);
+    dTue.setDate(dTue.getDate() + 1);
+    lectureData.push({
+      id: `lec-${orderCursor.toString().padStart(2, '0')}`,
+      moduleNumber: week,
+      orderIndex: orderCursor++,
+      contentType: 'LECTURE',
+      scheduledAt: dTue,
+      title: `Lecture ${lectureCount}: Extended Topic for Week ${week}`,
+      description: `Description for lecture ${lectureCount}.`,
+    });
+    lectureCount++;
+
+    // Wed - Lab
+    const dWed = new Date(dMon);
+    dWed.setDate(dWed.getDate() + 2);
+    lectureData.push({
+      id: `lec-${orderCursor.toString().padStart(2, '0')}`,
+      moduleNumber: week,
+      orderIndex: orderCursor++,
+      contentType: 'LAB',
+      scheduledAt: dWed,
+      title: `Lab ${labCount}: Exercises for Week ${week}`,
+      description: `Lab exercises for week ${week}.`,
+    });
+    labCount++;
+  }
 
   const lectures: Record<string, { id: string }> = {};
   for (const data of lectureData) {

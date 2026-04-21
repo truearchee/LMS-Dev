@@ -118,6 +118,8 @@ model LectureFile {
   mimeType  String?
   sizeBytes Int?
   createdAt DateTime @default(now())
+
+  @@unique([lectureId, type])
 }
 
 // ─────────────────────────────────────────────

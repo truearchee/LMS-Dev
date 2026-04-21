@@ -1,6 +1,7 @@
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
 import { prisma } from '../lib/prisma.js';
 import { requireAuth, requireRole } from '../middleware/auth.js';
+import { processTranscript, type TranscriptSource } from '../services/transcript/transcriptProcessor.js';
 
 export const transcriptRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => {
 
@@ -23,18 +24,20 @@ export const transcriptRoutes: FastifyPluginAsync = async (fastify: FastifyInsta
       const lecture = await prisma.lecture.findUnique({ where: { id: lectureId, deletedAt: null } });
       if (!lecture) return reply.status(404).send({ error: 'Lecture not found.' });
 
-      const validSources = ['ZOOM', 'MANUAL', 'UPLOAD'];
-      const normalizedSource = (source ?? 'MANUAL').toUpperCase();
-      if (!validSources.includes(normalizedSource)) {
-        return reply.status(400).send({ error: `source must be one of: ${validSources.join(', ')}` });
-      }
+      const validSources: TranscriptSource[] = ['ZOOM', 'MANUAL', 'UPLOAD'];
+      const transcriptSource: TranscriptSource = validSources.includes((source ?? '').toUpperCase() as TranscriptSource)
+        ? ((source ?? '').toUpperCase() as TranscriptSource)
+        : 'MANUAL';
+
+      const processedContent = processTranscript(rawContent, transcriptSource);
 
       const transcript = await prisma.transcript.create({
         data: {
           lectureId,
           rawContent,
-          source: normalizedSource,
-          status: 'PENDING',
+          processedContent,
+          source: transcriptSource,
+          status: 'DONE',
         },
       });
 
@@ -81,5 +84,32 @@ export const transcriptRoutes: FastifyPluginAsync = async (fastify: FastifyInsta
         pollUrl: `/api/v1/ai/jobs/${job.id}`,
       });
     },
+  );
+
+  // ── DELETE /api/v1/transcripts/:id ────────────────────────────────────────
+  // Access: TEACHER/ADMIN
+  fastify.delete<{
+    Params: { id: string }
+  }>(
+    '/:id',
+    { preHandler: [requireAuth, requireRole('TEACHER', 'ADMIN')] },
+    async (request, reply) => {
+      const { id } = request.params;
+
+      const transcript = await prisma.transcript.findUnique({
+        where: { id },
+      });
+
+      if (!transcript) {
+        return reply.status(404).send({ error: { message: 'Transcript not found' } });
+      }
+
+      // Delete in dependency order to avoid foreign key constraint errors
+      await prisma.aISummary.deleteMany({ where: { transcriptId: id } });
+      await prisma.aIJob.deleteMany({ where: { transcriptId: id } });
+      await prisma.transcript.delete({ where: { id } });
+
+      return reply.status(204).send();
+    }
   );
 };

@@ -7,7 +7,8 @@ import ProtectedRoute from '@/components/ProtectedRoute'
 import { getCourse } from '@/lib/api'
 import type { CourseDetail } from '@/types/course'
 import { CourseTimeline } from '@/components/CourseTimeline'
-import { LectureDetail } from '@/components/LectureDetail'
+import { LectureDetailPanel } from '@/components/LectureDetailPanel'
+import { UpcomingWidget } from '@/components/UpcomingWidget'
 
 // ─── Main page component ─────────────────────────────────────────────────────
 
@@ -97,31 +98,14 @@ export default function CoursePage() {
         </div>
 
         {/* RIGHT — Lecture detail or default widget blocks */}
-        <div
-          className="flex-1 flex flex-col gap-4 overflow-y-auto overflow-x-hidden"
-          style={{ scrollbarWidth: 'none' }}
-        >
+        <div className="flex-1 flex flex-col gap-4 overflow-y-auto overflow-x-hidden" style={{ scrollbarWidth: 'none', height: '100%' }}>
           {selectedLectureId ? (
-            /* ── Lecture detail panel ─────────────────────────────────── */
-            <div
-              className="flex-1 rounded-[20px] overflow-hidden"
-              style={{ background: '#E9E5E6', boxShadow: 'var(--shadow-card)', minHeight: 0 }}
-            >
-              <LectureDetail
-                lectureId={selectedLectureId}
-                onClose={() => setSelectedLectureId(null)}
-              />
-            </div>
+            <LectureDetailPanel lectureId={selectedLectureId} onClose={() => setSelectedLectureId(null)} />
           ) : (
             /* ── Default placeholder widget blocks ────────────────────── */
-            <>
-              {/* Block 1 — AI Recap */}
-              <div
-                className="w-full flex-shrink-0 rounded-[20px] flex items-end p-4"
-                style={{ height: 220, background: '#E9E5E6', boxShadow: 'var(--shadow-card)' }}
-              >
-                <span className="text-sm text-black/30">AI Recap</span>
-              </div>
+            <div className="flex flex-col gap-4 h-full animate-in fade-in duration-300">
+              {/* Block 1 — Upcoming Widget */}
+              <UpcomingWidget lectures={course.lectures} />
 
               {/* Blocks 2–4 — Three equal medium blocks */}
               <div className="flex flex-row gap-4 flex-shrink-0">
@@ -143,7 +127,7 @@ export default function CoursePage() {
               >
                 <span className="text-sm text-black/30">Progress</span>
               </div>
-            </>
+            </div>
           )}
         </div>
 
