@@ -72,3 +72,18 @@ export interface LectureDetail extends Lecture {
 export interface CourseDetail extends Course {
   lectures: Lecture[]
 }
+
+export interface CourseRecap {
+  id:            string
+  courseId:      string
+  title:         string
+  lectureCount:  number
+  modelUsed:     string
+  promptVersion: string | null
+  createdAt:     string
+  lectures:      { id: string }[]
+}
+
+export interface CourseRecapDetail extends CourseRecap {
+  content: string
+}

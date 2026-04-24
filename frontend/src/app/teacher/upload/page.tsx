@@ -15,6 +15,7 @@ import {
   updateTeacherNote,
   deleteLectureFile,
   deleteTranscript,
+  generateQuizForLecture,
 } from '@/lib/api'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import { TopNav } from '@/components/TopNav'
@@ -99,6 +100,7 @@ function UploadForm() {
 
   // Step 2: materials
   const [slidesFile, setSlidesFile] = useState<File | null>(null)
+  const [exerciseFile, setExerciseFile] = useState<File | null>(null)
   const [zoomUrl, setZoomUrl] = useState('')
   const [transcriptText, setTranscriptText] = useState('')
   const [transcriptFileName, setTranscriptFileName] = useState<string | null>(null)
@@ -159,6 +161,7 @@ function UploadForm() {
 
     // Reset all fields
     setSlidesFile(null)
+    setExerciseFile(null)
     setZoomUrl('')
     setTranscriptText('')
     setTranscriptFileName(null)
@@ -268,6 +271,18 @@ function UploadForm() {
         results.push(`✓ Slides uploaded: ${slidesFile.name}`)
       } catch (err) {
         results.push(`✗ Slides: ${err instanceof Error ? err.message : String(err)}`)
+        hasError = true
+      }
+    }
+
+    // Exercise sheet upload
+    if (exerciseFile) {
+      try {
+        const fileUrl = await uploadFile(exerciseFile)
+        await linkFileToLecture(selectedLectureId, 'REFERENCE', fileUrl, exerciseFile.name, 'application/pdf')
+        results.push(`✓ Exercise sheet uploaded: ${exerciseFile.name}`)
+      } catch (err) {
+        results.push(`✗ Exercise sheet: ${err instanceof Error ? err.message : String(err)}`)
         hasError = true
       }
     }
@@ -395,7 +410,16 @@ function UploadForm() {
       }
     }
 
-    setAiProgress('✓ All three summaries generated (Brief, Full, Key Points). Reload the course page to see them.')
+    setAiProgress('✓ All three summaries generated (Brief, Full, Key Points). Generating first practice quiz — this may take up to 90 seconds, do not close this tab...')
+
+    try {
+      if (selectedLectureId) {
+        await generateQuizForLecture(selectedLectureId, 8)
+        setAiProgress('✓ All three summaries and practice quiz generated successfully.')
+      }
+    } catch (err) {
+      setAiProgress(`✗ Summaries generated, but quiz failed: ${err instanceof Error ? err.message : String(err)}`)
+    }
 
     if (!abortPollingRef.current && selectedLectureId) {
       getLecture(selectedLectureId)
@@ -406,6 +430,20 @@ function UploadForm() {
 
   // Derived: is AI generation in progress?
   const isGenerating = aiProgress?.startsWith('Generating') === true
+
+  // Part H: Warn teacher before leaving while AI generation is running
+  useEffect(() => {
+    if (!isGenerating) return
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+      e.returnValue = 'Quiz generation is in progress. Leaving now may result in an incomplete quiz.'
+      return e.returnValue
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [isGenerating])
 
   return (
     <ProtectedRoute>
@@ -498,8 +536,16 @@ function UploadForm() {
                     {existingLecture.files.length === 0 ? (
                       <div style={{ fontSize: 13, color: 'rgba(0,0,0,0.35)' }}>No files uploaded yet.</div>
                     ) : existingLecture.files.map(file => {
-                      const icon = file.type === 'SLIDES' ? '📄' : file.type === 'RECORDING' ? '🎬' : '📎'
-                      const label = file.type === 'SLIDES' ? 'Slides' : file.type === 'RECORDING' ? 'Zoom Recording' : 'File'
+                      const icon =
+                        file.type === 'SLIDES'    ? '📄' :
+                        file.type === 'RECORDING' ? '🎬' :
+                        file.type === 'REFERENCE' ? '📋' : '📎'
+                      
+                      const typeLabel =
+                        file.type === 'SLIDES'    ? 'Slides' :
+                        file.type === 'RECORDING' ? 'Zoom Recording' :
+                        file.type === 'REFERENCE' ? 'Exercise Sheet' : 'File'
+                      
                       return (
                         <div key={file.id} style={{
                           display: 'flex', alignItems: 'center', gap: 10,
@@ -509,7 +555,7 @@ function UploadForm() {
                           <span style={{ fontSize: 15 }}>{icon}</span>
                           <div style={{ flex: 1, minWidth: 0 }}>
                             <div style={{ fontSize: 13, fontWeight: 500, color: 'rgba(0,0,0,0.70)' }}>
-                              {file.label ?? label}
+                              {file.label ?? typeLabel}
                             </div>
                             <div style={{ fontSize: 11, color: 'rgba(0,0,0,0.35)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                               {file.url}
@@ -614,17 +660,83 @@ function UploadForm() {
                 {/* Slides */}
                 <div style={{ marginBottom: 20 }}>
                   <label style={fieldLabel}>📄 Lecture Slides (PDF or PPTX)</label>
-                  <input
-                    type="file"
-                    accept=".pdf,.pptx"
-                    onChange={e => setSlidesFile(e.target.files?.[0] ?? null)}
-                    style={{ fontSize: 13, color: 'rgba(0,0,0,0.55)', width: '100%' }}
-                  />
-                  {slidesFile && (
-                    <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.40)', marginTop: 4 }}>
-                      {slidesFile.name} — {(slidesFile.size / 1024 / 1024).toFixed(1)} MB
-                    </div>
-                  )}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 0 }}>
+                    <input
+                      type="file"
+                      accept=".pdf,.pptx"
+                      id="slides-input"
+                      style={{ display: 'none' }}
+                      onChange={e => setSlidesFile(e.target.files?.[0] ?? null)}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => document.getElementById('slides-input')?.click()}
+                      style={{
+                        display:      'inline-flex',
+                        alignItems:   'center',
+                        gap:          8,
+                        padding:      '9px 16px',
+                        borderRadius: 10,
+                        border:       '1px solid rgba(0,0,0,0.12)',
+                        background:   'rgba(0,0,0,0.04)',
+                        fontSize:     13,
+                        fontWeight:   500,
+                        color:        'rgba(0,0,0,0.65)',
+                        cursor:       'pointer',
+                        transition:   'background 0.15s ease',
+                      }}
+                      onMouseEnter={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.08)')}
+                      onMouseLeave={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.04)')}
+                    >
+                      📂 Choose File
+                    </button>
+                    {slidesFile && (
+                      <span style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)', marginLeft: 10 }}>
+                        {slidesFile.name} — {(slidesFile.size / 1024 / 1024).toFixed(1)} MB
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Exercise Sheet */}
+                <div style={{ marginBottom: 20 }}>
+                  <label style={fieldLabel}>📋 Exercise Sheet (PDF)</label>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 0 }}>
+                    <input
+                      type="file"
+                      accept=".pdf"
+                      id="exercise-input"
+                      style={{ display: 'none' }}
+                      onChange={e => setExerciseFile(e.target.files?.[0] ?? null)}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => document.getElementById('exercise-input')?.click()}
+                      style={{
+                        display:      'inline-flex',
+                        alignItems:   'center',
+                        gap:          8,
+                        padding:      '9px 16px',
+                        borderRadius: 10,
+                        border:       '1px solid rgba(0,0,0,0.12)',
+                        background:   'rgba(0,0,0,0.04)',
+                        fontSize:     13,
+                        fontWeight:   500,
+                        color:        'rgba(0,0,0,0.65)',
+                        cursor:       'pointer',
+                        transition:   'background 0.15s ease',
+                      }}
+                      onMouseEnter={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.08)')}
+                      onMouseLeave={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.04)')}
+                    >
+                      📂 Choose File
+                    </button>
+                    {exerciseFile && (
+                      <span style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)', marginLeft: 10 }}>
+                        {exerciseFile.name} — {(exerciseFile.size / 1024 / 1024).toFixed(1)} MB
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Zoom URL */}
@@ -662,15 +774,39 @@ function UploadForm() {
                     <input
                       type="file"
                       accept=".vtt,.txt"
+                      id="transcript-input"
+                      style={{ display: 'none' }}
                       onChange={e => {
                         const file = e.target.files?.[0]
                         if (file) handleTranscriptFileChange(file)
                       }}
-                      style={{ fontSize: 13, color: 'rgba(0,0,0,0.55)' }}
                     />
-                    {transcriptFileName?.endsWith('.vtt') && (
-                      <span style={{ fontSize: 11, color: 'rgba(0,0,0,0.35)' }}>
-                        Timestamps stripped automatically
+                    <button
+                      type="button"
+                      onClick={() => document.getElementById('transcript-input')?.click()}
+                      style={{
+                        display:      'inline-flex',
+                        alignItems:   'center',
+                        gap:          8,
+                        padding:      '9px 16px',
+                        borderRadius: 10,
+                        border:       '1px solid rgba(0,0,0,0.12)',
+                        background:   'rgba(0,0,0,0.04)',
+                        fontSize:     13,
+                        fontWeight:   500,
+                        color:        'rgba(0,0,0,0.65)',
+                        cursor:       'pointer',
+                        transition:   'background 0.15s ease',
+                      }}
+                      onMouseEnter={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.08)')}
+                      onMouseLeave={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.04)')}
+                    >
+                      📂 Choose File
+                    </button>
+                    {transcriptFileName && (
+                      <span style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)' }}>
+                        {transcriptFileName}
+                        {transcriptFileName.endsWith('.vtt') && ' (Timestamps stripped)'}
                       </span>
                     )}
                   </div>

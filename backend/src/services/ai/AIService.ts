@@ -9,12 +9,67 @@
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { z } from 'zod';
+
+// ── Zod schemas for AI quiz response validation ────────────────────────────────
+
+const AIQuizQuestionSchema = z.object({
+  questionText:  z.string().min(10),
+  questionType:  z.enum(['MULTIPLE_CHOICE', 'TRUE_FALSE']).default('MULTIPLE_CHOICE'),
+  options:       z.array(z.string().min(1)).min(2).max(6),
+  correctAnswer: z.string().min(1),
+  explanation:   z.string().min(10),
+})
+
+const AIQuizResponseSchema = z.array(AIQuizQuestionSchema)
+
+/**
+ * Extracts the first complete JSON array or object from a string.
+ * Finds the first [ or { and the last ] or } — ignores any text before or after.
+ * Does NOT use regex for the extraction itself — uses indexOf/lastIndexOf.
+ */
+function extractJson(raw: string): string {
+  const trimmed = raw.trim()
+
+  const arrayStart  = trimmed.indexOf('[')
+  const objectStart = trimmed.indexOf('{')
+
+  if (arrayStart === -1 && objectStart === -1) {
+    throw new Error(`No JSON array or object found. First 200 chars: ${trimmed.slice(0, 200)}`)
+  }
+
+  let start: number
+  let closingChar: string
+
+  if (arrayStart === -1) {
+    start = objectStart; closingChar = '}'
+  } else if (objectStart === -1) {
+    start = arrayStart; closingChar = ']'
+  } else {
+    start = Math.min(arrayStart, objectStart)
+    closingChar = start === arrayStart ? ']' : '}'
+  }
+
+  const end = trimmed.lastIndexOf(closingChar)
+
+  if (end === -1 || end <= start) {
+    throw new Error(`Could not find closing '${closingChar}'. First 200 chars: ${trimmed.slice(0, 200)}`)
+  }
+
+  return trimmed.slice(start, end + 1)
+}
 
 // ─── Shared types ────────────────────────────────────────────────────────────
 
 export interface SummarizeOptions {
   type: 'BRIEF' | 'FULL' | 'BULLET_POINTS';
   promptVersion?: string;
+}
+
+export interface LectureSummaryInput {
+  lectureTitle:   string
+  orderIndex:     number
+  summaryContent: string 
 }
 
 export interface QuizQuestion {
@@ -24,9 +79,25 @@ export interface QuizQuestion {
   explanation?: string;
 }
 
+// Shape returned by AI provider generateQuiz() — before DB storage
+// Named AIQuizQuestion to distinguish from the Prisma QuizQuestion model
+export interface AIQuizQuestion {
+  questionText:  string
+  questionType:  string  // "MULTIPLE_CHOICE" | "TRUE_FALSE"
+  options:       string  // JSON string e.g. '["A. Option","B. Option","C. Option","D. Option"]'
+  correctAnswer: string  // full option text e.g. "B. Limits"
+  explanation:   string
+  orderIndex:    number
+}
+
 export interface AIProvider {
   summarize(transcript: string, options?: SummarizeOptions): Promise<string>;
-  generateQuiz(content: string, questionCount: number): Promise<QuizQuestion[]>;
+  generateQuiz(
+    transcriptContent: string,
+    questionCount: number,
+    existingQuestions?: string[]  // texts of existing questions to avoid duplication
+  ): Promise<AIQuizQuestion[]>;
+  generateRecap(summaries: LectureSummaryInput[], courseTitle: string): Promise<string>;
   embed(text: string): Promise<number[]>;
 }
 
@@ -96,13 +167,23 @@ export class MockAIProvider implements AIProvider {
     return `[MOCK ${type} SUMMARY] Received ${transcript.length} characters. This is a placeholder summary for development.`;
   }
 
-  async generateQuiz(content: string, questionCount: number): Promise<QuizQuestion[]> {
+  async generateQuiz(
+    transcriptContent: string,
+    questionCount: number,
+    existingQuestions: string[] = []
+  ): Promise<AIQuizQuestion[]> {
     return Array.from({ length: questionCount }, (_, i) => ({
-      question: `[MOCK] Question ${i + 1} about the provided content (${content.length} chars).`,
-      options: ['Option A', 'Option B', 'Option C', 'Option D'],
-      correctIndex: 0,
-      explanation: '[MOCK] This is a placeholder explanation.',
+      questionText:  `[MOCK] What is concept ${i + 1} from this lecture?`,
+      questionType:  'MULTIPLE_CHOICE',
+      options:       JSON.stringify(['A. Alpha', 'B. Beta', 'C. Gamma', 'D. Delta']),
+      correctAnswer: 'A. Alpha',
+      explanation:   '[MOCK] Alpha is correct because this is a placeholder quiz.',
+      orderIndex:    i,
     }));
+  }
+
+  async generateRecap(summaries: LectureSummaryInput[], courseTitle: string): Promise<string> {
+    return `[MOCK RECAP] Generated study guide for ${courseTitle} covering ${summaries.length} lectures.`;
   }
 
   async embed(text: string): Promise<number[]> {
@@ -125,7 +206,15 @@ export class OpenAIProvider implements AIProvider {
     throw new Error('OpenAIProvider not yet implemented — set AI_API_KEY and install openai package');
   }
 
-  async generateQuiz(content: string, questionCount: number): Promise<QuizQuestion[]> {
+  async generateQuiz(
+    transcriptContent: string,
+    questionCount: number,
+    existingQuestions?: string[]
+  ): Promise<AIQuizQuestion[]> {
+    throw new Error('OpenAIProvider not yet implemented');
+  }
+
+  async generateRecap(summaries: LectureSummaryInput[], courseTitle: string): Promise<string> {
     throw new Error('OpenAIProvider not yet implemented');
   }
 
@@ -146,7 +235,15 @@ export class AnthropicProvider implements AIProvider {
     throw new Error('AnthropicProvider not yet implemented — set AI_API_KEY and install @anthropic-ai/sdk');
   }
 
-  async generateQuiz(content: string, questionCount: number): Promise<QuizQuestion[]> {
+  async generateQuiz(
+    transcriptContent: string,
+    questionCount: number,
+    existingQuestions?: string[]
+  ): Promise<AIQuizQuestion[]> {
+    throw new Error('AnthropicProvider not yet implemented');
+  }
+
+  async generateRecap(summaries: LectureSummaryInput[], courseTitle: string): Promise<string> {
     throw new Error('AnthropicProvider not yet implemented');
   }
 
@@ -270,11 +367,102 @@ export class K2Provider implements AIProvider {
     return this.complete(prompt);
   }
 
-  async generateQuiz(content: string, questionCount: number): Promise<QuizQuestion[]> {
-    // Not yet implemented — Phase 3 Step 3.2
-    // Returns empty array instead of throwing — JobWorker must not crash
-    console.warn('K2Provider.generateQuiz: not yet implemented, returning empty array');
-    return [];
+  async generateQuiz(
+    transcriptContent: string,
+    questionCount: number,
+    existingQuestions: string[] = []
+  ): Promise<AIQuizQuestion[]> {
+    // Reuse the existing prepareTranscriptText method
+    const truncated = prepareTranscriptText({ rawContent: transcriptContent, processedContent: transcriptContent });
+
+    const existingQuestionsText = existingQuestions.length > 0
+      ? existingQuestions.map((q, i) => `${i + 1}. ${q}`).join('\n')
+      : 'None — this is the first quiz for this lecture.';
+
+    // loadPrompt is the module-level function already defined in this file
+    const prompt = loadPrompt('quiz-generate.v1.txt', {
+      QUESTION_COUNT: String(questionCount),
+      TRANSCRIPT:        truncated,
+      EXISTING_QUESTIONS: existingQuestionsText,
+    });
+
+    // this.complete() is the existing private method in K2Provider
+    const raw = await this.complete(prompt);
+
+    // Part F: Extract JSON using character-position search — handles conversational preamble
+    let jsonString: string
+    try {
+      jsonString = extractJson(raw)
+    } catch (err: any) {
+      throw new Error(`generateQuiz: ${err.message}`)
+    }
+
+    let parsed: unknown
+    try {
+      parsed = JSON.parse(jsonString)
+    } catch {
+      throw new Error(`generateQuiz: JSON.parse failed. Extracted string: ${jsonString.slice(0, 200)}`)
+    }
+
+    if (!Array.isArray(parsed)) {
+      throw new Error(`generateQuiz: expected array, got ${typeof parsed}`)
+    }
+
+    // Part G: Zod validation — full array first, per-item fallback
+    const fullValidation = AIQuizResponseSchema.safeParse(parsed)
+
+    const rawQuestions = fullValidation.success
+      ? fullValidation.data
+      : (parsed as unknown[])
+          .map(q => AIQuizQuestionSchema.safeParse(q))
+          .filter(r => r.success)
+          .map(r => (r as any).data)
+
+    if (!fullValidation.success) {
+      console.warn(`generateQuiz: partial Zod validation —`, fullValidation.error.issues.length, 'issue(s)')
+    }
+
+    if (rawQuestions.length === 0) {
+      throw new Error('generateQuiz: no valid questions after Zod validation')
+    }
+
+    // Final check: correctAnswer must be present in options
+    const result: AIQuizQuestion[] = []
+    for (const q of rawQuestions) {
+      if (!q.options.includes(q.correctAnswer)) {
+        console.warn(`generateQuiz: correctAnswer not in options, skipping: "${q.questionText.slice(0, 60)}"`)
+        continue
+      }
+      result.push({
+        questionText:  q.questionText,
+        questionType:  q.questionType,
+        options:       JSON.stringify(q.options),
+        correctAnswer: q.correctAnswer,
+        explanation:   q.explanation,
+        orderIndex:    result.length,
+      })
+    }
+
+    if (result.length === 0) {
+      throw new Error('generateQuiz: no questions passed correctAnswer-in-options check')
+    }
+
+    return result;
+  }
+
+  async generateRecap(summaries: LectureSummaryInput[], courseTitle: string): Promise<string> {
+    const sorted = [...summaries].sort((a, b) => a.orderIndex - b.orderIndex).slice(0, 20);
+    
+    const lectureTitles = sorted.map(s => s.lectureTitle).join(', ');
+    const summariesText = sorted.map(s => `=== Lecture: ${s.lectureTitle} ===\n${s.summaryContent}\n`).join('\n');
+
+    const prompt = loadPrompt('recap-generate.v1.txt', {
+      COURSE_TITLE:   courseTitle,
+      LECTURE_TITLES: lectureTitles,
+      SUMMARIES:      summariesText,
+    });
+
+    return this.complete(prompt);
   }
 
   async embed(text: string): Promise<number[]> {

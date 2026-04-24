@@ -69,7 +69,7 @@ export const Sidebar = forwardRef<SidebarHandle, SidebarProps>(function Sidebar(
 
   useEffect(() => {
     onEditModeChange?.(isEditMode)
-  }, [isEditMode, onEditModeChange])
+  }, [isEditMode]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const sensors = useSensors(
     useSensor(PointerSensor, {

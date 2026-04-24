@@ -9,11 +9,12 @@ import { fileURLToPath } from 'url';
 import { env } from './lib/env.js';
 import { prisma } from './lib/prisma.js';
 import { authRoutes }       from './routes/auth.js';
-import { coursesRoutes }    from './routes/courses.js';
+import { makeCoursesRoutes } from './routes/courses.js';
 import { makeLectureRoutes } from './routes/lectures.js';
 import { transcriptRoutes } from './routes/transcripts.js';
 import { makeAiRoutes }     from './routes/ai.js';
 import { uploadRoutes }     from './routes/upload.js';
+import quizzesRoutes        from './routes/quizzes.js';
 import { LocalStorageService, StorageService } from './services/storage/StorageService.js';
 import { AIProvider, MockAIProvider, OpenAIProvider, AnthropicProvider, K2Provider } from './services/ai/AIService.js';
 import { JobWorker } from './services/ai/JobWorker.js';
@@ -70,11 +71,12 @@ await server.register(staticPlugin, {
 
 // ─── Routes ──────────────────────────────────────────────────────────────────
 server.register(authRoutes,                                  { prefix: '/api/v1/auth' });
-server.register(coursesRoutes,                               { prefix: '/api/v1/courses' });
-server.register(async (f) => makeLectureRoutes(storage)(f),  { prefix: '/api/v1/lectures' });
+server.register(async (f) => makeCoursesRoutes(ai)(f),       { prefix: '/api/v1/courses' });
+server.register(async (f) => makeLectureRoutes(storage, ai)(f), { prefix: '/api/v1/lectures' });
 server.register(transcriptRoutes,                            { prefix: '/api/v1/transcripts' });
 server.register(makeAiRoutes(ai),                            { prefix: '/api/v1/ai' });
 server.register(async (f) => uploadRoutes(f, { storage }),   { prefix: '/api/upload' });
+await server.register(quizzesRoutes,                         { prefix: '/api/v1/quizzes' });
 
 // ─── Boot ─────────────────────────────────────────────────────────────────────
 const start = async () => {

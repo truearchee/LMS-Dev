@@ -9,6 +9,7 @@ import type { CourseDetail } from '@/types/course'
 import { CourseTimeline } from '@/components/CourseTimeline'
 import { LectureDetailPanel } from '@/components/LectureDetailPanel'
 import { UpcomingWidget } from '@/components/UpcomingWidget'
+import RecapWidget from '@/components/recap/RecapWidget'
 
 // ─── Main page component ─────────────────────────────────────────────────────
 
@@ -107,7 +108,10 @@ export default function CoursePage() {
               {/* Block 1 — Upcoming Widget */}
               <UpcomingWidget lectures={course.lectures} />
 
-              {/* Blocks 2–4 — Three equal medium blocks */}
+              {/* Block 2 — AI Study Guides (RecapWidget) */}
+              <RecapWidget courseId={course.id} lectures={course.lectures} />
+
+              {/* Blocks 3–5 — Three equal medium blocks */}
               <div className="flex flex-row gap-4 flex-shrink-0">
                 {(['Course Materials', 'Assignments', 'My Notes'] as const).map((label) => (
                   <div
@@ -120,7 +124,7 @@ export default function CoursePage() {
                 ))}
               </div>
 
-              {/* Block 5 — Progress */}
+              {/* Block 6 — Progress */}
               <div
                 className="w-full flex-1 rounded-[20px] flex items-end p-4"
                 style={{ minHeight: 160, background: '#E9E5E6', boxShadow: 'var(--shadow-card)' }}

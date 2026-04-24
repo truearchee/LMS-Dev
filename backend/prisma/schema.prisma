@@ -35,6 +35,7 @@ model User {
   teachingCourses Course[]      @relation("CourseTeacher")
   submissions     Submission[]
   refreshTokens   RefreshToken[]
+  quizAttempts    QuizAttempt[]
 }
 
 model RefreshToken {
@@ -63,6 +64,7 @@ model Course {
   // Relations
   enrollments Enrollment[]
   lectures    Lecture[]
+  recaps      CourseRecap[]
 }
 
 // Enrollment is the bridge between User and Course.
@@ -104,6 +106,8 @@ model Lecture {
   transcripts Transcript[]
   assignments Assignment[]
   aiSummaries AISummary[]
+  quizzes     Quiz[]
+  recaps      CourseRecap[]
 }
 
 // All media for a lecture lives here.
@@ -162,6 +166,55 @@ model AISummary {
   createdAt     DateTime    @default(now())
 
   @@unique([lectureId, transcriptId, type])
+}
+
+model CourseRecap {
+  id            String    @id @default(cuid())
+  courseId      String
+  course        Course    @relation(fields: [courseId], references: [id])
+  title         String
+  content       String
+  lectures      Lecture[] // Implicit Many-to-Many relation
+  lectureCount  Int       // Denormalized count for fast UI rendering
+  modelUsed     String
+  promptVersion String?
+  createdAt     DateTime  @default(now())
+}
+
+model Quiz {
+  id            String        @id @default(cuid())
+  lectureId     String
+  lecture       Lecture       @relation(fields: [lectureId], references: [id])
+  questions     QuizQuestion[]
+  attempts      QuizAttempt[]
+  modelUsed     String
+  promptVersion String?
+  createdAt     DateTime      @default(now())
+}
+
+model QuizQuestion {
+  id            String   @id @default(cuid())
+  quizId        String
+  quiz          Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  questionText  String
+  questionType  String   @default("MULTIPLE_CHOICE")
+  options       String   // JSON string: ["A. Option", "B. Option", "C. Option", "D. Option"]
+  correctAnswer String   // Must exactly match one entry in options
+  explanation   String
+  orderIndex    Int
+}
+
+model QuizAttempt {
+  id        String   @id @default(cuid())
+  quizId    String
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+  studentId String
+  student   User     @relation(fields: [studentId], references: [id])
+  answers   String   // JSON: { "questionId": "selected answer text" }
+  score     Float    // Percentage 0.0–100.0
+  takenAt   DateTime @default(now())
+
+  @@unique([quizId, studentId])
 }
 
 // AIJob tracks async processing state.

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { getLecture } from '@/lib/api'
 import type { LectureDetail } from '@/types/course'
+import { PracticeQuiz } from './PracticeQuiz'
 
 interface Props {
   lectureId: string
@@ -157,7 +158,8 @@ export function LectureDetailPanel({ lectureId, onClose }: Props) {
         </div>
       )}
 
-
+      {/* 5. Practice Quiz */}
+      <PracticeQuiz lectureId={lecture.id} />
 
       {/* 6. Empty State */}
       {isEmpty && (

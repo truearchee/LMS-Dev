@@ -138,7 +138,7 @@ export async function api<T>(
   throw new ApiError(res.status, errBody.error ?? errBody.message ?? 'Request failed')
 }
 
-import type { Course, CourseDetail, LectureDetail } from '@/types/course'
+import type { Course, CourseDetail, LectureDetail, CourseRecap, CourseRecapDetail } from '@/types/course'
 
 // Fetch all courses the current user has access to.
 // Backend returns { courses: Course[] } — unwrapped here.
@@ -258,6 +258,115 @@ export async function deleteLectureFile(
 
 export async function deleteTranscript(transcriptId: string): Promise<void> {
   await api<void>(`/transcripts/${transcriptId}`, {
+    method: 'DELETE',
+  })
+}
+
+// ── Quiz types ───────────────────────────────────────────────────────────────
+
+// Shape received from GET /lectures/:id/quiz (correct answers hidden)
+export interface ClientQuizQuestion {
+  id:           string
+  questionText: string
+  questionType: 'MULTIPLE_CHOICE' | 'TRUE_FALSE'
+  options:      string[]   // already parsed array — never a JSON string on the frontend
+  orderIndex:   number
+  // correctAnswer and explanation are NOT here — only returned after submission
+}
+
+export interface ClientQuiz {
+  id:        string
+  lectureId: string
+  createdAt: string
+  questions: ClientQuizQuestion[]
+}
+
+export interface QuizResult {
+  questionId:    string
+  questionText:  string
+  options:       string[]
+  studentAnswer: string
+  correctAnswer: string
+  explanation:   string
+  isCorrect:     boolean
+}
+
+export interface QuizSubmitResponse {
+  score:          number   // 0.0–100.0
+  correctCount:   number
+  totalQuestions: number
+  results:        QuizResult[]
+}
+
+export interface QuizAttemptSummary {
+  attemptId:      string
+  quizId:         string
+  score:          number
+  takenAt:        string
+  totalQuestions: number
+}
+
+// ── Quiz API functions ───────────────────────────────────────────────────────
+
+export async function getNextQuiz(lectureId: string): Promise<{
+  quiz:     ClientQuiz
+  isNew:    boolean
+  poolSize: number
+}> {
+  return api(`/lectures/${lectureId}/quiz`)
+}
+
+export async function submitQuizAnswers(
+  quizId:  string,
+  answers: Record<string, string>  // { questionId: "selected answer text" }
+): Promise<QuizSubmitResponse> {
+  return api(`/quizzes/${quizId}/submit`, {
+    method: 'POST',
+    body:   JSON.stringify({ answers }),
+  })
+}
+
+export async function getQuizHistory(lectureId: string): Promise<{
+  attempts: QuizAttemptSummary[]
+}> {
+  return api(`/lectures/${lectureId}/quiz-history`)
+}
+
+export async function generateQuizForLecture(
+  lectureId:     string,
+  questionCount: number = 8
+): Promise<{ quiz: { id: string; questions: ClientQuizQuestion[] } }> {
+  return api(`/lectures/${lectureId}/generate-quiz`, {
+    method: 'POST',
+    body:   JSON.stringify({ questionCount }),
+  })
+}
+
+// ── Recap API functions ──────────────────────────────────────────────────────
+
+export async function generateRecap(
+  courseId:   string,
+  lectureIds: string[]
+): Promise<CourseRecapDetail> {
+  const data = await api<{ recap: CourseRecapDetail }>(`/courses/${courseId}/generate-recap`, {
+    method: 'POST',
+    body:   JSON.stringify({ lectureIds }),
+  })
+  return data.recap
+}
+
+export async function getRecaps(courseId: string): Promise<CourseRecap[]> {
+  const data = await api<{ recaps: CourseRecap[] }>(`/courses/${courseId}/recaps`)
+  return data.recaps
+}
+
+export async function getRecap(courseId: string, recapId: string): Promise<CourseRecapDetail> {
+  const data = await api<{ recap: CourseRecapDetail }>(`/courses/${courseId}/recaps/${recapId}`)
+  return data.recap
+}
+
+export async function deleteRecap(courseId: string, recapId: string): Promise<void> {
+  await api(`/courses/${courseId}/recaps/${recapId}`, {
     method: 'DELETE',
   })
 }
